@@ -8,12 +8,24 @@ import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
 import Notifications from "@/pages/Notifications.vue";
 import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
+import Login from "@/pages/Auth/Login.vue";
+import Registro from "@/pages/Auth/Registro.vue";
 
 const routes = [
   {
+    path: "/login",
+    name: "Login",
+    component: Login
+  },
+  {
+    path: "/registro",
+    name: "Registro",
+    component: Registro
+  },
+  {
     path: "/",
     component: DashboardLayout,
-    redirect: "/dashboard",
+    redirect: "/login",
     children: [
       {
         path: "dashboard",
