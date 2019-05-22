@@ -72,6 +72,7 @@ export default {
     auth () {
       console.log(this.user);
       console.log(this.pass);
+      this.$router.replace({ name: 'Dashboard' })
     }
   },
   mounted () {
