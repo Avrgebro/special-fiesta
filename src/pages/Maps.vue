@@ -7,11 +7,11 @@ import GoogleMapsLoader from "google-maps";
 export default {
   methods: {
     initMap(google) {
-      var myLatlng = new google.maps.LatLng(40.748817, -73.985428);
+      var myLatlng = new google.maps.LatLng(-13.5658543,-76.1345475);
       var mapOptions = {
-        zoom: 13,
+        zoom: 17,
         center: myLatlng,
-        scrollwheel: false, // we disable de scroll over the map, it is a really annoing when you scroll through page
+        scrollwheel: false,
         styles: [
           {
             featureType: "water",
@@ -85,7 +85,7 @@ export default {
     }
   },
   mounted() {
-    GoogleMapsLoader.KEY = "YOUR_KEY_HERE";
+    GoogleMapsLoader.KEY = "AIzaSyDon7TRgp042jH5mu3pNas2DeuvJbxssC0";
     GoogleMapsLoader.load(google => {
       this.initMap(google);
     });
