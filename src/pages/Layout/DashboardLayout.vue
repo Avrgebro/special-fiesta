@@ -12,6 +12,10 @@
         <md-icon>library_books</md-icon>
         <p>Reportes</p>
       </sidebar-link>
+      <sidebar-link to="/icons">
+        <md-icon>description</md-icon>
+        <p>Formularios</p>
+      </sidebar-link>
       <sidebar-link to="/user">
         <md-icon>person</md-icon>
         <p>Perfil de usuario</p>

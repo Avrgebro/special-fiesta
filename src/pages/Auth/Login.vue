@@ -7,7 +7,7 @@
       <div class="PageColumn PageColumn__right">
         <div class="ColumnContainer mode-auth">
           <h1 class="Title">
-            Ingresar al sistema "La Gaaaa-rita"
+            Ingresar al sistema "La Garita"
           </h1>
           <form class="AnimatedForm">
             <fieldset class="AnimatedForm__field m-required login hideable">
