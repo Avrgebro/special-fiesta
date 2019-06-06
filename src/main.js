@@ -15,6 +15,9 @@ import Notifications from "./components/NotificationPlugin";
 // MaterialDashboard plugin
 import MaterialDashboard from "./material-dashboard";
 
+import Buefy from 'buefy'
+import 'buefy/dist/buefy.css'
+
 import Chartist from "chartist";
 
 import store from "./store";
@@ -32,6 +35,8 @@ Vue.use(MaterialDashboard);
 Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
+Vue.use(Buefy)
+
 
 /* eslint-disable no-new */
 new Vue({
