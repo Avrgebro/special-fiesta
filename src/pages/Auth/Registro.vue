@@ -10,7 +10,7 @@
             Registro "La Gaaaa-rita"
           </h1>
           <form class="AnimatedForm">
-              <fieldset class="AnimatedForm__field m-required login hideable">
+            <fieldset class="AnimatedForm__field m-required login hideable">
               <input
                 id="regNombres"
                 class="AnimatedForm__textInput"
@@ -89,13 +89,14 @@
               <div class="AnimatedForm__errorMessage"></div>
             </fieldset>
             <div class="two-modes-separator"></div>
-            
-            <fieldset class="AnimatedForm__field">
-              
-            </fieldset>
 
-            <md-button class="AnimatedForm__submitButton md-primary" v-on:click="auth">Registrarse</md-button>
+            <fieldset class="AnimatedForm__field"></fieldset>
 
+            <md-button
+              class="AnimatedForm__submitButton md-primary"
+              v-on:click="auth"
+              >Registrarse</md-button
+            >
           </form>
         </div>
       </div>
@@ -105,27 +106,26 @@
 
 <script>
 export default {
-  name: 'Registro',
-  data () {
+  name: "Registro",
+  data() {
     return {
-        user: "",
-        pass: ""
-    }
+      user: "",
+      pass: ""
+    };
   },
   methods: {
-    auth () {
+    auth() {
       console.log(this.user);
       console.log(this.pass);
-      this.$router.replace({ name: 'Dashboard' })
+      this.$router.replace({ name: "Dashboard" });
     }
   },
-  mounted () {
-    this.$store.state.authenticated = false
-    localStorage.removeItem('User')
-    localStorage.removeItem('Auth')
+  mounted() {
+    this.$store.state.authenticated = false;
+    localStorage.removeItem("User");
+    localStorage.removeItem("Auth");
   }
-}
-
+};
 </script>
 
 <style lang="scss">

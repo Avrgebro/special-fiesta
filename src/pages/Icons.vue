@@ -9,7 +9,6 @@
           </md-card-header>
           <md-card-content>
             <div id="typography">
-              
             </div>
           </md-card-content>
         </md-card>
