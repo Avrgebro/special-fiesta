@@ -8,13 +8,13 @@
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
-      <sidebar-link to="/typography">
+      <sidebar-link to="/reportes">
         <md-icon>library_books</md-icon>
         <p>Reportes</p>
       </sidebar-link>
-      <sidebar-link to="/icons">
+      <sidebar-link to="/Censo">
         <md-icon>description</md-icon>
-        <p>Formularios</p>
+        <p>Censo</p>
       </sidebar-link>
       <sidebar-link to="/user">
         <md-icon>person</md-icon>

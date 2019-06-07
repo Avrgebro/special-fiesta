@@ -7,8 +7,7 @@
     <md-card-content>
       <h6 class="category text-gray">CEO / Co-Founder</h6>
       <h4 class="card-title">Alec Thompson</h4>
-      <p class="card-description">
-      </p>
+      <p class="card-description"></p>
     </md-card-content>
   </md-card>
 </template>

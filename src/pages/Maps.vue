@@ -7,7 +7,7 @@ import GoogleMapsLoader from "google-maps";
 export default {
   methods: {
     initMap(google) {
-      var myLatlng = new google.maps.LatLng(-13.5658543,-76.1345475);
+      var myLatlng = new google.maps.LatLng(-13.5658543, -76.1345475);
       var mapOptions = {
         zoom: 17,
         center: myLatlng,

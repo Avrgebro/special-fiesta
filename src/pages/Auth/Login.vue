@@ -37,13 +37,14 @@
               <div class="AnimatedForm__errorMessage"></div>
             </fieldset>
             <div class="two-modes-separator"></div>
-            
-            <fieldset class="AnimatedForm__field">
-              
-            </fieldset>
 
-            <md-button class="AnimatedForm__submitButton md-primary" v-on:click="auth">Entrar</md-button>
+            <fieldset class="AnimatedForm__field"></fieldset>
 
+            <md-button
+              class="AnimatedForm__submitButton md-primary"
+              v-on:click="auth"
+              >Entrar</md-button
+            >
           </form>
           <div class="BottomText m-secondary-text login-bottom-text hideable">
             <a class="BottomLink m-secondary-text" href="/password"
@@ -51,7 +52,8 @@
             >
           </div>
           <div class="BottomText login-bottom-text hideable">
-            No tienes cuenta? <a class="BottomLink" href="/register/">Registrate</a>
+            No tienes cuenta?
+            <a class="BottomLink" href="/register/">Registrate</a>
           </div>
         </div>
       </div>
@@ -61,27 +63,26 @@
 
 <script>
 export default {
-  name: 'Login',
-  data () {
+  name: "Login",
+  data() {
     return {
-        user: "",
-        pass: ""
-    }
+      user: "",
+      pass: ""
+    };
   },
   methods: {
-    auth () {
+    auth() {
       console.log(this.user);
       console.log(this.pass);
-      this.$router.replace({ name: 'Dashboard' })
+      this.$router.replace({ name: "Dashboard" });
     }
   },
-  mounted () {
-    this.$store.state.authenticated = false
-    localStorage.removeItem('User')
-    localStorage.removeItem('Auth')
+  mounted() {
+    this.$store.state.authenticated = false;
+    localStorage.removeItem("User");
+    localStorage.removeItem("Auth");
   }
-}
-
+};
 </script>
 
 <style lang="scss">

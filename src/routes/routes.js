@@ -2,12 +2,9 @@ import DashboardLayout from "@/pages/Layout/DashboardLayout.vue";
 
 import Dashboard from "@/pages/Dashboard.vue";
 import UserProfile from "@/pages/UserProfile.vue";
-import TableList from "@/pages/TableList.vue";
+import Censo from "@/pages/Censo.vue";
 import Reportes from "@/pages/Reportes.vue";
-import Icons from "@/pages/Icons.vue";
 import Maps from "@/pages/Maps.vue";
-import Notifications from "@/pages/Notifications.vue";
-import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 import Login from "@/pages/Auth/Login.vue";
 import Registro from "@/pages/Auth/Registro.vue";
 
@@ -38,19 +35,14 @@ const routes = [
         component: UserProfile
       },
       {
-        path: "table",
-        name: "Table List",
-        component: TableList
-      },
-      {
         path: "reportes",
         name: "Reportes",
         component: Reportes
       },
       {
-        path: "icons",
-        name: "Icons",
-        component: Icons
+        path: "censo",
+        name: "Censo",
+        component: Censo
       },
       {
         path: "maps",
@@ -59,16 +51,6 @@ const routes = [
           hideFooter: true
         },
         component: Maps
-      },
-      {
-        path: "notifications",
-        name: "Notifications",
-        component: Notifications
-      },
-      {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO
       }
     ]
   }
