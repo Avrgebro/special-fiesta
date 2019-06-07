@@ -10,6 +10,7 @@ import Notifications from "@/pages/Notifications.vue";
 import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 import Login from "@/pages/Auth/Login.vue";
 import Registro from "@/pages/Auth/Registro.vue";
+import Censo from "@/pages/Censo.vue";
 
 const routes = [
   {
@@ -69,6 +70,11 @@ const routes = [
         path: "upgrade",
         name: "Upgrade to PRO",
         component: UpgradeToPRO
+      },
+      {
+        path: "censo",
+        name: "Censo",
+        component: Censo
       }
     ]
   }
