@@ -5,7 +5,7 @@
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
       >
         <md-card>
-          <md-card-header data-background-color="green">
+          <md-card-header data-background-color="blue">
             <h4 class="title">Censo Familiar</h4>
             <p class="category">Censo oficial para familias de La Garita</p>
             <p class="category">A continuación, llenar la información relacionada a los integrandes de la familia:</p>
@@ -21,9 +21,10 @@
               </b-field>
             <div class="md-layout">
               <div class="md-layout-item">
+                <h4 class="title">Vivienda</h4>
                 <div class="vivienda">
                   <b-field label="Dirección">
-                      <b-input class ="md-layout-item" placeholder="Ingrese la dirección de la vivienda" maxlength="30"></b-input>
+                      <b-input class ="md-layout-item" placeholder="Ingrese la dirección de la vivienda" maxlength="50"></b-input>
                   </b-field>
                   <b-field label="Manzana">
                       <b-input class ="md-layout-item" placeholder="Ingrese la manzana en la que se encuentra la vivienda" maxlength="30"></b-input>
@@ -34,6 +35,7 @@
                 </div>
               </div>
               <div class="md-layout-item">
+                <h4 class="title">Distribución</h4>
                 <div class="vivienda">
                   <b-field label="Metros cuadrados">
                       <b-input class ="md-layout-item" placeholder="Ingrese el área de la vivienda" maxlength="30"></b-input>
@@ -55,14 +57,26 @@
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-100"
       >
         <md-card class="md-card-plain">
-          <md-card-header data-background-color="green">
-            <h4 class="title">Detalle Familiar</h4>
-            <p class="category">Ingrese el detalle de la composición familiar:</p>
+          <md-card-header data-background-color="blue">
+            <div class="md-layout">
+              <div class="md-layout-item">
+                <h4 class="title">Detalle Familiar</h4> 
+                <p class="category">Ingrese el detalle de la composición familiar:</p>
+              </div>
+              <div class="md-layout-item">
+                <b-button type="is-info">+</b-button>
+              </div>
+            </div>
           </md-card-header>
           <md-card-content>
-                <simple-table table-header-color="green"></simple-table>
+                <simple-table table-header-color="blue"></simple-table>
           </md-card-content>
         </md-card>
+      </div>
+      <div>
+        <button class="confirm-button button is-info" @click="confirm">
+            Guardar
+        </button>
       </div>
     </div>
   </div>
@@ -75,6 +89,14 @@ export default {
   components: {
     OrderedTable,
     SimpleTable
+  },
+  methods: {
+    confirm() {
+      this.$dialog.confirm({
+          message: '¿Está seguro de guardar la información?',
+          onConfirm: () => this.$toast.open('Censo guardado')
+      })       
+    }
   }
 };
 </script>
@@ -88,9 +110,12 @@ export default {
     }
     .vivienda {
       border-radius: 25px;
-      border: 1.5px solid #73AD21;
-      padding: 20px; 
+      border: 1.5px solid lightblue;
+      padding: 20px;
       width: 500px;
-      height: 310px; 
+      height: 330px; 
+    }
+    .add-button {
+      padding: 80px;
     }
 </style>

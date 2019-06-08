@@ -7,7 +7,6 @@ import Reportes from "@/pages/Reportes.vue";
 import Maps from "@/pages/Maps.vue";
 import Login from "@/pages/Auth/Login.vue";
 import Registro from "@/pages/Auth/Registro.vue";
-import Censo from "@/pages/Censo.vue";
 
 const routes = [
   {
@@ -52,16 +51,6 @@ const routes = [
           hideFooter: true
         },
         component: Maps
-      },
-      {
-        path: "notifications",
-        name: "Notifications",
-        component: Notifications
-      },
-      {
-        path: "upgrade",
-        name: "Upgrade to PRO",
-        component: UpgradeToPRO
       }
     ]
   }

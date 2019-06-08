@@ -1,11 +1,19 @@
 <template>
   <div>
-    <md-table v-model="users" :table-header-color="tableHeaderColor">
+    <md-table v-model="family_members" :table-header-color="tableHeaderColor">
       <md-table-row slot="md-table-row" slot-scope="{ item }">
         <md-table-cell md-label="Nombres">{{ item.name }}</md-table-cell>
-        <md-table-cell md-label="Apellidos">{{ item.country }}</md-table-cell>
-        <md-table-cell md-label="Edad">{{ item.city }}</md-table-cell>
-        <md-table-cell md-label="Educación">{{ item.salary }}</md-table-cell>
+        <md-table-cell md-label="Apellidos">{{ item.lastName }}</md-table-cell>
+        <md-table-cell md-label="Edad">{{ item.age }}</md-table-cell>
+        <md-table-cell md-label="Educación">{{ item.education }}</md-table-cell>
+        <md-table-cell md-label="Editar">
+          <md-button class="md-raised md-primary md-icon-button">
+            <md-icon>edit</md-icon>
+          </md-button>
+          <md-button class="md-raised md-primary md-icon-button">
+            <md-icon>delete</md-icon>
+          </md-button>
+        </md-table-cell>
       </md-table-row>
     </md-table>
   </div>
@@ -23,42 +31,30 @@ export default {
   data() {
     return {
       selected: [],
-      users: [
+      family_members: [
         {
-          name: "Dakota Rice",
-          salary: "$36,738",
-          country: "Niger",
-          city: "Oud-Turnhout"
+          name: "Jean Piere",
+          lastName: "Sullón Monteza",
+          age: "24",
+          education: "Magister en todo"
         },
         {
-          name: "Minerva Hooper",
-          salary: "$23,738",
-          country: "Curaçao",
-          city: "Sinaai-Waas"
+          name: "Alfredo",
+          lastName: "Baez Rojas",
+          age: "23",
+          education: "Se hace lo que se puede"
         },
         {
-          name: "Sage Rodriguez",
-          salary: "$56,142",
-          country: "Netherlands",
-          city: "Overland Park"
+          name: "Jose Alonso",
+          lastName: "Bejarano Carranza",
+          age: "24",
+          education: "Gaaaa"
         },
         {
-          name: "Philip Chaney",
-          salary: "$38,735",
-          country: "Korea, South",
-          city: "Gloucester"
-        },
-        {
-          name: "Doris Greene",
-          salary: "$63,542",
-          country: "Malawi",
-          city: "Feldkirchen in Kārnten"
-        },
-        {
-          name: "Mason Porter",
-          salary: "$78,615",
-          country: "Chile",
-          city: "Gloucester"
+          name: "Francisco",
+          lastName: "Fabián",
+          age: "23",
+          education: "Doctor en el amor"
         }
       ]
     };
