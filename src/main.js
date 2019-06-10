@@ -33,6 +33,10 @@ import Chartist from "chartist";
 
 import store from "./store";
 
+import VueGoogleCharts from "vue-google-charts";
+
+
+
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
@@ -49,6 +53,8 @@ Vue.use(Notifications);
 Vue.use(Buefy, {
   defaultIconPack: "fas"
 });
+Vue.use(VueGoogleCharts);
+
 
 /* eslint-disable no-new */
 new Vue({
