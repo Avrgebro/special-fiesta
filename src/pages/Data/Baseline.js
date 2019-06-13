@@ -20,43 +20,43 @@ export default {
       },
       {
         "id":4,
-        "nombre": "ad",
+        "nombre": "familia",
         "nomcol": "docid",
         "dependencia": 1
       },
       {
         "id":5,
-        "nombre": "dfdf",
+        "nombre": "direccion",
         "nomcol": "docid",
         "dependencia": 1
       },
       {
         "id":6,
-        "nombre": "Dnwerweri",
+        "nombre": "Garita",
         "nomcol": "docid",
         "dependencia": 1
       },
       {
         "id":7,
-        "nombre": "Dnwerweri",
+        "nombre": "Agua diaria",
         "nomcol": "docid",
         "dependencia": 1
       },
       {
         "id":8,
-        "nombre": "Dnwerweri",
+        "nombre": "Consumo promedio",
         "nomcol": "docid",
         "dependencia": 1
       },
       {
         "id":9,
-        "nombre": "Dnwerweri",
+        "nombre": "Ahorro mensual",
         "nomcol": "docid",
         "dependencia": 1
       },
       {
         "id":10,
-        "nombre": "Dnwerweri",
+        "nombre": "miembros de la familia",
         "nomcol": "docid",
         "dependencia": 1
       },

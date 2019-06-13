@@ -40,12 +40,6 @@
                   </div>
                   <footer class="card-footer md-layout">
                     <div class="card-footer-item md-layout-item md-size-66">
-                      <b-tabs type="is-toggle-rounded">
-                        <b-tab-item label="datos1"></b-tab-item>
-                        <b-tab-item label="datos2"></b-tab-item>
-                        <b-tab-item label="datos3"></b-tab-item>
-                        <b-tab-item label="datos4"></b-tab-item>
-                      </b-tabs>
                     </div>
                     <a class="card-footer-item md-layout-item md-size-33" v-on:click="generar">Generar</a>
                   </footer>
@@ -71,26 +65,11 @@
                   <div class="card-content">
                     <div class="content md-layout">
                       <b-field label="Fecha inicio" class="md-layout-item md-size-15">
-                        <b-datepicker
-                            icon="calendar">
-                        </b-datepicker>
+                        <md-datepicker v-model="date" />
                       </b-field>
                       <b-field label="Fecha fin" class="md-layout-item md-size-15">
-                        <b-datepicker
-                            icon="calendar">
-                        </b-datepicker>
+                        <md-datepicker v-model="date" />
                       </b-field>
-
-                      <b-dropdown>
-                          <button class="button" slot="trigger">
-                              <span>Dropdown</span>
-                              <b-icon icon="caret-down"></b-icon>
-                          </button>
-
-                          <b-dropdown-option>Action</b-dropdown-option>
-                          <b-dropdown-option>Another action</b-dropdown-option>
-                          <b-dropdown-option>Something else</b-dropdown-option>
-                      </b-dropdown>
                       
                     </div>
                   </div>
@@ -148,32 +127,73 @@
                 </b-table>
               </div>
             </div>
+            <b-collapse class="card" aria-id="contentIdForA11y3" :open="collapseOpenControls.columns">
+                  <div
+                    slot="trigger"
+                    slot-scope="props"
+                    class="card-header"
+                    role="button"
+                    aria-controls="contentIdForA11y3"
+                  >
+                    <p class="card-header-title">
+                      Graficos estadisticos
+                    </p>
+                    <a class="card-header-icon">
+                      <b-icon :icon="props.open ? 'caret-up' : 'caret-down'">
+                      </b-icon>
+                    </a>
+                  </div>
+                  <div class="card-content">
+                    <div class="content">
+                        <ul class="collist">
+                          <li v-for="chart in charts" :key="chart.id" class="colitem">
+                            <b-checkbox v-model="selectedcharts"
+                                :native-value="chart">
+                                {{ chart.name }}
+                            </b-checkbox> 
+                          </li> 
+                        </ul>
+                        <span>{{ selectedcharts }}</span>
+                    </div>
+                  </div>
+                </b-collapse>
             <div class="bordered" id="grid-container" ref="GridContainer">
               
-
-              <grid-layout :layout.sync="layout"
+              
+              <!--<grid-layout :layout.sync="layout"
                          :col-num="coln"
                          :row-height="rowh"
                          :is-draggable="true"
                          :is-resizable="true"
                          :margin="[10, 10]"
-                         :use-css-transforms="true"
+                         :use-css-transforms="false"
             >
-                <grid-item v-for="item in chartSelected" :key="item.i"
+                <grid-item v-for="item in layout" :key="item.i"
                            :x="item.x"
                            :y="item.y"
                            :w="item.w"
                            :h="item.h"
                            :i="item.i"
                         >
-                        <!--<GChart
+                        <GChart
                           type="ColumnChart"
                           :data="chartData"
                           :options="{width: (colw*item.w - 10 - 2 - item.w), height: (rowh*item.h + 10 * (item.h-1.3))}"
-                        />-->
+                        />
                         <span>{{ item.i }}</span>
                 </grid-item>
-            </grid-layout>
+            </grid-layout>-->
+
+              <div v-for="chart in selectedcharts" :key="chart.id">
+                <GChart 
+                  :type="chart.name"
+                  :data="chartData"
+                  :options="{width: divsize, title: chart.name}"
+                  :settings="{ packages: [chart.package] }"
+                />
+              </div>
+
+              
                   
             </div>
           </md-card-content>
@@ -186,23 +206,25 @@
 
 <script>
 import Data from './Data/Baseline'
-import Chats from './Data/Charts'
+import Charts from './Data/Charts'
 import Layout from './Data/Layout'
 
-import VueGridLayout from 'vue-grid-layout';
+// import VueGridLayout from 'vue-grid-layout';
 const data = require('./Data/sample.json')
 
 export default{
   name: 'Reportes',
   components: {
-    GridLayout: VueGridLayout.GridLayout,
-    GridItem: VueGridLayout.GridItem
+    // GridLayout: VueGridLayout.GridLayout,
+    // GridItem: VueGridLayout.GridItem
   },
   data () {
     return {
       columnas: Data.columnas,
       dependencias: Data.dependencias,
+      charts: Charts.charts,
       selectedcols: [],
+      selectedcharts: [],
       isDataReady: false,
       collapseOpenControls: {
         columns: false,
@@ -225,10 +247,11 @@ export default{
         subtitle: 'Sales, Expenses, and Profit: 2014-2017',
       },
       layout: Layout.layout,
-      chartSelected:[{"x":0,"y":0,"w":2,"h":2,"i":"0"},],
+      chartSelected:[],
       rowh: 50,
-      coln: 10,
-      colw: 0
+      coln: 3,
+      colw: 0,
+      divsize: 0
     }
   },
   methods: {
@@ -239,10 +262,14 @@ export default{
       this.data2 = new google.visualization.arrayToDataTable(this.chartData);
 
       console.log(this.$refs.GridContainer.clientWidth)
+    },
+    chartadded () {
+
     }
   },
   mounted() {
     this.colw = this.$refs.GridContainer.clientWidth/10;
+    this.divsize = this.$refs.GridContainer.clientWidth;
   }
 }
 
