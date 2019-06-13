@@ -12,7 +12,7 @@
         <md-icon>library_books</md-icon>
         <p>Reportes</p>
       </sidebar-link>
-      <sidebar-link to="/Censo">
+      <sidebar-link to="/censo">
         <md-icon>description</md-icon>
         <p>Censo</p>
       </sidebar-link>
