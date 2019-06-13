@@ -51,7 +51,6 @@ Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
 Vue.use(Buefy, {
-  defaultIconComponent: 'vue-fontawesome',
   defaultIconPack: 'fas',
 });
 Vue.use(VueGoogleCharts);
