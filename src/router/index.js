@@ -117,13 +117,13 @@ export const constantRoutes = [
     children: [
       {
         path: 'lista_formularios',
-        name: 'Gestion de Formularios',
+        name: 'lista_formularios',
         component: () => import('@/views/gestionFormularios/listformularios/index'),
         meta: { title: 'Gestion de formularios', icon: 'form' }
       },
       {
         path: 'nuevo_formulario',
-        name: 'Nuevo Formularios',
+        name: 'Nuevo_Formularios',
         component: () => import('@/views/gestionFormularios/newformulario/index'),
         meta: { title: 'Nuevo formulario', icon: 'form' },
         hidden: true

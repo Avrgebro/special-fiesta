@@ -1,52 +1,115 @@
 <template>
   <div class="app-container">
-    <el-container>
-      <el-header>
-        <el-button
-          style="float: right;"
-          type="success"
-          @click="handleNew()"
-          >
-          Nuevo formulario
-        </el-button>
-      </el-header>
+    <el-form ref="form" :model="form" label-width="120px">
       
-      <el-table
-        :data="tableData.filter(data => !search || data.formname.toLowerCase().includes(search.toLowerCase()))"
-        style="width: 100%">
-        <el-table-column
-          label="Formularios"
-          prop="formname">
-        </el-table-column>
-        <el-table-column
-          label="Tipo"
-          prop="type">
-        </el-table-column>
-        <el-table-column
-          align="right">
-          <template slot="header" slot-scope="scope">
-            <el-input
-              v-model="search"
-              size="mini"
-              placeholder="Buscar por nombre"/>
-          </template>
-          <template slot-scope="scope">
-            <el-button
-              size="mini"
-              @click="handleView(scope.$index, scope.row)">Ver</el-button>
-            <el-button
-              size="mini"
-              @click="handleEdit(scope.$index, scope.row)">Editar</el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)">Eliminar</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
+      <el-form-item label="Nombre">
+        <el-input v-model="form.name" />
+      </el-form-item>
+      <el-form-item label="Tipo">
+        <el-radio-group v-model="form.type">
+          <el-radio label="Residente" />
+          <el-radio label="Vivienda" />
+        </el-radio-group>
+      </el-form-item>
       
+      <el-form-item label="Preguntas">
+        <div>
+          
+          <el-table
+            :data="form.questions.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
+            style="width: 100%">
+            <el-table-column
+              label="Pregunta"
+              prop="question">
+            </el-table-column>
+            <el-table-column
+              label="Tipo"
+              prop="type">
+            </el-table-column>
+            <el-table-column
+              label="Clave"
+              prop="key">
+            </el-table-column>
+            <el-table-column
+              align="right">
+              <template slot="header" slot-scope="scope">
+                <el-button
+                  size="mini"
+                  type="success"
+                  @click="dialogVisible = true">Nueva Pregunta</el-button>
+              </template>
+              <template slot-scope="scope">
+                <el-button
+                  size="mini"
+                  type="danger"
+                  @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+          <el-pagination
+            style="float: right;"
+            background
+            layout="prev, pager, next"
+            :total="form.questions.length"
+            :current-page.sync="currentpage"
+            :page-size="perpagetable">
+          </el-pagination>
+        </div>
+      </el-form-item>
+      <el-form-item style="float: right;">
+        <el-button type="primary" @click="onSubmit">Guardar</el-button>
+        <el-button @click="$router.push('lista_formulario')">Cancelar</el-button>
+      </el-form-item>
+    </el-form>
 
-    </el-container>
+    <el-dialog
+      title="Agregar pregunta"
+      :visible.sync="dialogVisible"
+      width="30%"
+      :before-close="handleClose"
+      :show-close="false">
+      <el-form>
+        <el-form-item label="Pregunta">
+          <el-input v-model="newquestion.question" />
+        </el-form-item>
+        <el-form-item label="Llave">
+          <el-input v-model="newquestion.key" />
+        </el-form-item>
+        <el-form-item label="Tipo">
+          <el-radio-group v-model="newquestion.type">
+            <el-radio label="Valor" />
+            <el-radio label="Fecha" />
+            <el-radio label="Opciones" />
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="Opciones" v-if="newquestion.type == 'Opciones'">
+          <el-tag
+            :key="tag"
+            v-for="tag in newquestion.options"
+            closable
+            :disable-transitions="false"
+            @close="handleClose(tag)">
+            {{tag}}
+          </el-tag>
+          <el-input
+            class="input-new-tag"
+            v-if="newquestion.inputVisible"
+            v-model="newquestion.inputValue"
+            ref="saveTagInput"
+            size="mini"
+            @keyup.enter.native="handleInputConfirm"
+            @blur="handleInputConfirm"
+          >
+          </el-input>
+          <el-button v-else class="button-new-tag" size="small" @click="showInput">+ Opcion</el-button>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="handleDialogSave()">Guardar</el-button>
+        <el-button @click="handleDialogClose()">Cancelar</el-button>
+      </span>
+    </el-dialog>
+    
   </div>
 </template>
 
@@ -54,48 +117,94 @@
 export default {
   data() {
     return {
-      tableData: [{
-        formname: 'Informacion general',
-        type: 'Vivienda'
-      }, {
-        formname: 'Servicios basicos',
-        type: 'Vivienda'
-      }, {
-        formname: 'Informacion general',
-        type: 'Residente'
-      }, {
-        formname: 'Educacional',
-        type: 'Residente'
-      }, {
-        formname: 'Empleo',
-        type: 'Residente'
-      }, {
-        formname: 'Empoderamiento',
-        type: 'Residente'
-      }],
-      search: '',
-    }
-  },
-  methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
-    },
-    handleDelete(index, row) {
-      console.log(index, row);
-    },
-    handleView(index, row) {
-      console.log(index, row);
-    },
-    handleNew(){
+      form: {
+        name: '',
+        type: '',
+        questions: [],
+      },
+      newquestion: {
+        question: '',
+        key: '',
+        type: 'Valor',
+        options: [],
+        inputVisible: false,
+        inputValue: ''
+      },
+      currentpage: 1,
+      perpagetable: 5,
+      dialogVisible: false
       
     }
   },
+  methods: {
+    onSubmit() {// Guardar el formulario nuevo
+      this.$message('submit!')
+    },
+    handleDelete(index, row) {// Eliminar una pregunta de la tabla
+      console.log(index, row);
+    },
+    handleDialogClose() {// Cerrar el dialog sin guardar la nueva pregunta
+      this.dialogVisible = false
+      this.cleanQuestionState()
+    },
+    handleDialogSave() {// Cerrar el dialog y guardar la nueva pregunta
+      this.dialogVisible = false
+      var nq = {}
+      nq.question = this.newquestion.question
+      nq.key = this.newquestion.key
+      nq.type = this.newquestion.type
+      nq.options = this.newquestion.options
+
+      this.form.questions.push(nq)
+      this.cleanQuestionState()
+    },
+    cleanQuestionState() {// volver los valores a 0
+      this.newquestion.question = ''
+      this.newquestion.key = ''
+      this.newquestion.type = 'Valor'
+      this.newquestion.options = []
+      this.newquestion.inputVisible = false
+      this.inputValue = ''
+    },
+    handleClose(tag) {
+      this.newquestion.options.splice(this.newquestion.options.indexOf(tag), 1);
+    },
+    showInput() {
+      this.newquestion.inputVisible = true;
+      this.$nextTick(_ => {
+        this.$refs.saveTagInput.$refs.input.focus();
+      });
+    },
+    handleInputConfirm() {
+      let inputValue = this.newquestion.inputValue;
+      if (inputValue) {
+        this.newquestion.options.push(inputValue);
+      }
+      this.newquestion.inputVisible = false;
+      this.newquestion.inputValue = '';
+    }
   }
+}
 </script>
 
 <style scoped>
 .line{
   text-align: center;
+}
+.el-tag + .el-tag {
+    margin-left: 10px;
+}
+.button-new-tag {
+  margin-left: 10px;
+  height: 32px;
+  line-height: 30px;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.input-new-tag {
+  width: 90px;
+  margin-left: 10px;
+  vertical-align: bottom;
 }
 </style>
 

@@ -5,7 +5,7 @@
         <el-button
           style="float: right;"
           type="success"
-          @click="handleNew()"
+          @click="$router.push('nuevo_formulario')"
           >
           Nuevo formulario
         </el-button>
@@ -85,9 +85,6 @@ export default {
     },
     handleView(index, row) {
       console.log(index, row);
-    },
-    handleNew(){
-      
     }
   },
   }
