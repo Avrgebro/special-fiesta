@@ -110,6 +110,26 @@ export const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: '/gestionFormularios',
+    component: Layout,
+    children: [
+      {
+        path: 'lista_formularios',
+        name: 'Gestion de Formularios',
+        component: () => import('@/views/gestionFormularios/listformularios/index'),
+        meta: { title: 'Gestion de formularios', icon: 'form' }
+      },
+      {
+        path: 'nuevo_formulario',
+        name: 'Nuevo Formularios',
+        component: () => import('@/views/gestionFormularios/newformulario/index'),
+        meta: { title: 'Nuevo formulario', icon: 'form' },
+        hidden: true
+      }
+    ]
+  },
   
   {
     path: 'external-link',
