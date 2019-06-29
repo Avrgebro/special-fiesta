@@ -13,7 +13,7 @@
       
       <el-table
         :data="tableData.filter(data => !search || data.formname.toLowerCase().includes(search.toLowerCase()))"
-        style="width: 100%">
+        style="width: 100%; float: right;">
         <el-table-column
           label="Formularios"
           prop="formname">
@@ -24,7 +24,7 @@
         </el-table-column>
         <el-table-column
           align="right">
-          <template slot="header" slot-scope="scope">
+          <template slot="header">
             <el-input
               v-model="search"
               size="mini"
@@ -51,28 +51,11 @@
 </template>
 
 <script>
+import Forms from '@/data/forms'
 export default {
   data() {
     return {
-      tableData: [{
-        formname: 'Informacion general',
-        type: 'Vivienda'
-      }, {
-        formname: 'Servicios basicos',
-        type: 'Vivienda'
-      }, {
-        formname: 'Informacion general',
-        type: 'Residente'
-      }, {
-        formname: 'Educacional',
-        type: 'Residente'
-      }, {
-        formname: 'Empleo',
-        type: 'Residente'
-      }, {
-        formname: 'Empoderamiento',
-        type: 'Residente'
-      }],
+      tableData: Forms.forms,
       search: '',
     }
   },
@@ -91,8 +74,6 @@ export default {
 </script>
 
 <style scoped>
-.line{
-  text-align: center;
-}
+
 </style>
 

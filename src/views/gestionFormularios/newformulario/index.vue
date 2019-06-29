@@ -3,7 +3,7 @@
     <el-form ref="form" :model="form" label-width="120px">
       
       <el-form-item label="Nombre">
-        <el-input v-model="form.name" />
+        <el-input v-model="form.name" placeholder="Nombre del formulario" maxlength="70" show-word-limit/>
       </el-form-item>
       <el-form-item label="Tipo">
         <el-radio-group v-model="form.type">
@@ -32,7 +32,7 @@
             </el-table-column>
             <el-table-column
               align="right">
-              <template slot="header" slot-scope="scope">
+              <template slot="header">
                 <el-button
                   size="mini"
                   type="success"
@@ -58,7 +58,7 @@
       </el-form-item>
       <el-form-item style="float: right;">
         <el-button type="primary" @click="onSubmit">Guardar</el-button>
-        <el-button @click="$router.push('lista_formulario')">Cancelar</el-button>
+        <el-button @click="$router.push('lista_formularios')">Cancelar</el-button>
       </el-form-item>
     </el-form>
 
@@ -119,7 +119,7 @@ export default {
     return {
       form: {
         name: '',
-        type: '',
+        type: 'Residente',
         questions: [],
       },
       newquestion: {
@@ -141,7 +141,7 @@ export default {
       this.$message('submit!')
     },
     handleDelete(index, row) {// Eliminar una pregunta de la tabla
-      console.log(index, row);
+      this.form.questions.splice(index, 1);
     },
     handleDialogClose() {// Cerrar el dialog sin guardar la nueva pregunta
       this.dialogVisible = false

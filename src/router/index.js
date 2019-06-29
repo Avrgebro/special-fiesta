@@ -123,9 +123,29 @@ export const constantRoutes = [
       },
       {
         path: 'nuevo_formulario',
-        name: 'Nuevo_Formularios',
+        name: 'nuevo_formularios',
         component: () => import('@/views/gestionFormularios/newformulario/index'),
         meta: { title: 'Nuevo formulario', icon: 'form' },
+        hidden: true
+      }
+    ]
+  },
+
+  {
+    path: '/gestionCensos',
+    component: Layout,
+    children: [
+      {
+        path: 'lista_censos',
+        name: 'lista_censos',
+        component: () => import('@/views/gestionCensos/listCensos/index'),
+        meta: { title: 'Gestion de Censos', icon: 'form' }
+      },
+      {
+        path: 'nuevo_censo',
+        name: 'nuevo_censo',
+        component: () => import('@/views/gestionCensos/newCenso/index'),
+        meta: { title: 'Nuevo censo', icon: 'form' },
         hidden: true
       }
     ]
