@@ -7,7 +7,7 @@
           type="success"
           @click="$router.push('nuevo_formulario')"
           >
-          Nuevo formulario
+          + Nuevo formulario
         </el-button>
       </el-header>
       
@@ -26,9 +26,7 @@
           align="right">
           <template slot="header">
             <el-input
-              v-model="search"
-              size="mini"
-              placeholder="Buscar por nombre"/>
+              v-model="search"/>
           </template>
           <template slot-scope="scope">
             <el-button
@@ -68,6 +66,7 @@ export default {
     },
     handleView(index, row) {
       console.log(index, row);
+      this.$router.push({name: 'detalle_formulario', params: {data: row}})
     }
   },
   }

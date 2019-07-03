@@ -127,6 +127,13 @@ export const constantRoutes = [
         component: () => import('@/views/gestionFormularios/newformulario/index'),
         meta: { title: 'Nuevo formulario', icon: 'form' },
         hidden: true
+      },
+      {
+        path: 'detalle_formulario',
+        name: 'detalle_formulario',
+        component: () => import('@/views/gestionFormularios/viewformulario/index'),
+        meta: { title: 'Detalle de formulario', icon: 'form' },
+        hidden: true
       }
     ]
   },

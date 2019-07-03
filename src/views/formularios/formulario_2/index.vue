@@ -44,6 +44,7 @@
         <el-button @click="onCancel">Cancel</el-button>
       </el-form-item>
     </el-form>
+    <el-input v-model="test"></el-input>
   </div>
 </template>
 
@@ -60,7 +61,8 @@ export default {
         type: [],
         resource: '',
         desc: ''
-      }
+      },
+      test: ''
     }
   },
   methods: {
