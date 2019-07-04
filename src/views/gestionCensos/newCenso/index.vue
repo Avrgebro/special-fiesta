@@ -4,7 +4,7 @@
       <el-form-item label="Asignar formularios">
         <el-table
           ref="multipleTable"
-          :data="forms.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
+          :data="forms"
           style="width: 50%; display: inline-block;"
           @selection-change="handleSelectionChange">
           
@@ -22,14 +22,10 @@
             width="55">
           </el-table-column>
         </el-table>
-        <el-pagination
-          style=""
-          background
-          layout="prev, pager, next"
-          :total="forms.length"
-          :current-page.sync="currentpage"
-          :page-size="perpagetable">
-        </el-pagination>
+        
+      </el-form-item>
+      <el-form-item label="Periodo del censo">
+        <el-input v-model="censo.periodo" style="width: 200px;"></el-input>
       </el-form-item>
       <el-form-item label="Fecha y hora de inicio">
         <el-date-picker
@@ -49,18 +45,18 @@
         <el-button @click="$router.push('lista_censos')">Cancelar</el-button>
       </el-form-item>
     </el-form>
-    <span>{{ censo }}</span>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 import Forms from '@/data/forms'
 export default {
   data() {
     return {
       censo: {
-        fechaRegistro: new Date(),
+        fechaRegistro: new Date().toISOString().slice(0, 10),
         fechaInicio:'',
         periodo:'',
         estado: 0,
@@ -74,15 +70,22 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'forms'
+      'forms',
+      'nextcensoid'
     ])
   },
   methods: {
+    ...mapMutations('user', ['ADD_CENSO']),
     handleSelectionChange(val) {
       this.censo.formulariosId = val.map(form => form.id);;
     },
     onSubmit(){
-
+      this.censo.estado = this.censo.estado == true ? '1' : '0'
+      var id = this.nextcensoid
+      this.censo.id = id
+      console.log(this.censo)
+      this.ADD_CENSO(this.censo)
+      this.$router.go(-1)
     }
   }
 }

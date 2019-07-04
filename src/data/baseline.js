@@ -12,43 +12,43 @@ export default {
             
                 'id':2,
                 'nombre': 'Apellidos',
-                'nomcol': 'ap_pat, ap_mat',
+                'nomcol': 'apellidos',
                 'dependencia': 1
             },
             {
                 'id':3,
                 'nombre': 'Dni',
-                'nomcol': 'docid',
+                'nomcol': 'dni',
                 'dependencia': 1
             },
             {
                 'id':8,
                 'nombre': 'Educacion',
-                'nomcol': 'docid',
+                'nomcol': 'educacion',
                 'dependencia': 1
             },
             {
                 'id':9,
                 'nombre': 'Estado Civil',
-                'nomcol': 'docid',
+                'nomcol': 'estadocivil',
                 'dependencia': 1
             },
             {
                 'id':10,
                 'nombre': 'Fecha Nacimiento',
-                'nomcol': 'docid',
+                'nomcol': 'fechanac',
                 'dependencia': 1
             },
             {
                 'id':11,
                 'nombre': 'Tiempo Resid',
-                'nomcol': 'docid',
+                'nomcol': 'tresidencia',
                 'dependencia': 1
             },
             {
                 'id':12,
                 'nombre': 'Genero',
-                'nomcol': 'docid',
+                'nomcol': 'genero',
                 'dependencia': 1
             }
         ],
@@ -56,31 +56,31 @@ export default {
             {
                 'id':4,
                 'nombre': 'Id Familia',
-                'nomcol': 'docid',
+                'nomcol': 'idfamilia',
                 'dependencia': 1
             },
             {
                 'id':5,
                 'nombre': 'Direccion',
-                'nomcol': 'docid',
+                'nomcol': 'direccion',
                 'dependencia': 1
             },
             {
                 'id':6,
                 'nombre': 'Material',
-                'nomcol': 'docid',
+                'nomcol': 'material',
                 'dependencia': 1
             },
             {
                 'id':7,
                 'nombre': '# Habitantes',
-                'nomcol': 'docid',
+                'nomcol': 'nhabitantes',
                 'dependencia': 1
             },
             {
                 'id':7,
                 'nombre': '# Mascotas',
-                'nomcol': 'docid',
+                'nomcol': 'nmascotas',
                 'dependencia': 1
             }
         ]

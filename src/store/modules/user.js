@@ -6,9 +6,11 @@ import Forms from '@/data/forms'
 const state = {
   token: getToken(),
   name: '',
+  role:'admin',
   avatar: '',
   forms: Forms.forms,
   censos: [{
+    id: 1,
     fechaRegistro:'2020-01-04',
     fechaInicio:'2020-01-04',
     periodo:'1',

@@ -72,13 +72,40 @@ export const constantRoutes = [
         path: 'tablas',
         name: 'Tablas',
         component: () => import('@/views/reportes/tablas/index'),
-        meta: { title: 'Tablas de datos', icon: 'table' }
+        meta: { title: 'Reportes', icon: 'table' }
       },
-      {
+      /*{
         path: 'charts',
         name: 'Graficos',
         component: () => import('@/views/reportes/charts/index'),
         meta: { title: 'Graficos estadisticos', icon: 'chart' }
+      }*/
+    ]
+  },
+
+  {
+    path: '/censos',
+    component: Layout,
+    children: [
+      {
+        path: 'censos_asignados',
+        name: 'censos_asignados',
+        component: () => import('@/views/censos/censosasignados/index'),
+        meta: { title: 'Censos Asignados', icon: 'form' }
+      },
+      {
+        path: 'responder_censos',
+        name: 'responder_censos',
+        component: () => import('@/views/censos/respondercenso/index'),
+        meta: { title: 'Responder Censo', icon: 'form' },
+        hidden: true
+      },
+      {
+        path: 'ver_censo',
+        name: 'ver_censo',
+        component: () => import('@/views/censos/vercenso/index'),
+        meta: { title: 'Detalle Censo', icon: 'form' },
+        hidden: true
       }
     ]
   },
@@ -133,6 +160,7 @@ export const constantRoutes = [
   {
     path: 'external-link',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: 'https://panjiachen.github.io/vue-element-admin-site/#/',

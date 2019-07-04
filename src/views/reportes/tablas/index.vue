@@ -14,7 +14,7 @@
 
             <el-checkbox-group v-model="checkedcols">
               <el-menu-item v-for="(col, indcol) in coltype" v-bind:key="indcol">
-                <el-checkbox :label="col.id">{{ col.nombre }}</el-checkbox>
+                <el-checkbox :label="col.nomcol">{{ col.nombre }}</el-checkbox>
               </el-menu-item>
             </el-checkbox-group>
 
@@ -83,7 +83,7 @@
                 </el-container>
               </el-main>
               <el-footer>
-                <el-button style="float: right;">Generar</el-button>
+                <el-button style="float: right;" @click="handleGen()">Generar</el-button>
               </el-footer>
             </el-container>
           </el-collapse-item>
@@ -98,8 +98,12 @@
         <div class="div-module">
           <el-table
             :data="tableData"
-            height="250"
-            style="width: 100%">
+            style="">
+
+            <el-table-column v-for="(col, index) in checkedcols" v-bind:key="index"
+              :label="col"
+              :prop="col">
+            </el-table-column>
             
           </el-table>
         </div>
@@ -111,9 +115,11 @@
 <script>
 import Baseline from '@/data/baseline'
 import Filters from '@/data/filters'
+import Registros from '@/data/registros'
 export default {
   data() {
     return {
+      registros: Registros.registros,
       columns: Baseline.columnas,
       depends: Baseline.dependencias,
       filters: Filters.filters,
@@ -134,7 +140,20 @@ export default {
     }*/
   },
   methods: {
-    
+    handleGen() {
+      var data = []
+
+      for(var i = 0; i < this.registros.length; i++){
+        var obj = {}
+        var self = this
+        this.checkedcols.forEach(function(col) {
+          obj[col] = self.registros[i][col]
+        });
+        data.push(obj)
+      }
+
+      this.tableData = data
+    }
   }
 }
 </script>
