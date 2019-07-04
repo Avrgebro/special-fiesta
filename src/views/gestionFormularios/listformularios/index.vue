@@ -12,7 +12,7 @@
       </el-header>
       
       <el-table
-        :data="forms.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
+        :data="forms.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase())).slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
         style="width: 100%; float: right;">
         <el-table-column
           label="Formularios"
@@ -25,7 +25,7 @@
         <el-table-column
           align="right">
           <template slot="header">
-            <el-input
+            <input
               v-model="search"/>
           </template>
           <template slot-scope="scope">
@@ -42,7 +42,14 @@
           </template>
         </el-table-column>
       </el-table>
-      
+      <el-pagination
+        style="float: right;"
+        background
+        layout="prev, pager, next"
+        :total="forms.length"
+        :current-page.sync="currentpage"
+        :page-size="perpagetable">
+      </el-pagination>
 
     </el-container>
   </div>
@@ -54,8 +61,10 @@ import Forms from '@/data/forms'
 export default {
   data() {
     return {
-      tableData: forms,
+      tableData: Forms.forms,
       search: '',
+      currentpage: 1,
+      perpagetable: 5
     }
   },
   computed: {
@@ -70,7 +79,7 @@ export default {
     },
     handleDelete(index, row) {
       console.log(index, row);
-      this.$confirm('Seguro que desa eliminar el formulario?', 'Warning', {
+      this.$confirm('Seguro que desa eliminar el formulario?', 'Advertencia', {
           confirmButtonText: 'Confirmar',
           cancelButtonText: 'Cancelar',
           type: 'warning',

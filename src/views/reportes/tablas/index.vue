@@ -103,7 +103,6 @@
             
           </el-table>
         </div>
-        <span>{{ filterdata }}</span>
       </el-main>
     </el-container>
   </div>

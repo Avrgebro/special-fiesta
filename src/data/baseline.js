@@ -1,6 +1,6 @@
 export default {
     'columnas': {
-        'col_tipo_1': [
+        'residente': [
 
             {
                 'id':1,
@@ -20,54 +20,70 @@ export default {
                 'nombre': 'Dni',
                 'nomcol': 'docid',
                 'dependencia': 1
-            }
-        ],
-        'col_tipo_2': [
-            {
-                'id':4,
-                'nombre': 'familia',
-                'nomcol': 'docid',
-                'dependencia': 1
             },
-            {
-                'id':5,
-                'nombre': 'direccion',
-                'nomcol': 'docid',
-                'dependencia': 1
-            },
-            {
-                'id':6,
-                'nombre': 'Garita',
-                'nomcol': 'docid',
-                'dependencia': 1
-            },
-            {
-                'id':7,
-                'nombre': 'Agua diaria',
-                'nomcol': 'docid',
-                'dependencia': 1
-            }
-        ],
-        'col_tipo_3': [
             {
                 'id':8,
-                'nombre': 'Consumo promedio',
+                'nombre': 'Educacion',
                 'nomcol': 'docid',
                 'dependencia': 1
             },
             {
                 'id':9,
-                'nombre': 'Ahorro mensual',
+                'nombre': 'Estado Civil',
                 'nomcol': 'docid',
                 'dependencia': 1
             },
             {
                 'id':10,
-                'nombre': 'miembros de la familia',
+                'nombre': 'Fecha Nacimiento',
+                'nomcol': 'docid',
+                'dependencia': 1
+            },
+            {
+                'id':11,
+                'nombre': 'Tiempo Resid',
+                'nomcol': 'docid',
+                'dependencia': 1
+            },
+            {
+                'id':12,
+                'nombre': 'Genero',
                 'nomcol': 'docid',
                 'dependencia': 1
             }
         ],
+        'vivienda': [
+            {
+                'id':4,
+                'nombre': 'Id Familia',
+                'nomcol': 'docid',
+                'dependencia': 1
+            },
+            {
+                'id':5,
+                'nombre': 'Direccion',
+                'nomcol': 'docid',
+                'dependencia': 1
+            },
+            {
+                'id':6,
+                'nombre': 'Material',
+                'nomcol': 'docid',
+                'dependencia': 1
+            },
+            {
+                'id':7,
+                'nombre': '# Habitantes',
+                'nomcol': 'docid',
+                'dependencia': 1
+            },
+            {
+                'id':7,
+                'nombre': '# Mascotas',
+                'nomcol': 'docid',
+                'dependencia': 1
+            }
+        ]
 
     },
     'dependencias': [

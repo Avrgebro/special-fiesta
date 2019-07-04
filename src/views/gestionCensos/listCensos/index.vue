@@ -7,12 +7,12 @@
           type="success"
           @click="$router.push('nuevo_censo')"
           >
-          Nuevo censo
+          + Nuevo censo
         </el-button>
       </el-header>
       
       <el-table
-        :data="tableData.filter(data => !search || data.estado.toLowerCase().includes(search.toLowerCase()))"
+        :data="censos.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
         style="width: 100%">
         <el-table-column
           label="Periodo"
@@ -20,7 +20,7 @@
         </el-table-column>
         <el-table-column
           label="Creado"
-          prop="creado"
+          prop="fechaRegistro"
           sortable>
         </el-table-column>
         <el-table-column
@@ -34,18 +34,12 @@
         </el-table-column>
         <el-table-column
           label="Efectivas"
-          prop="efectivas">
+          prop="vivEncuestadas">
         </el-table-column>
         <el-table-column
           align="right">
-          <template slot="header">
-            <el-input
-              v-model="search"
-              size="mini"
-              placeholder="Buscar por nombre"/>
-          </template>
           <template slot-scope="scope">
-            <el-button v-if="scope.row.estado == 'Cerrado'"
+            <el-button v-if="scope.row.estado == '0'"
               size="mini"
               @click="handleView(scope.$index, scope.row)">Ver</el-button>
             <el-button v-else
@@ -57,61 +51,33 @@
           </template>
         </el-table-column>
       </el-table>
-      
+      <el-pagination
+        style="float: right;"
+        background
+        layout="prev, pager, next"
+        :total="censos.length"
+        :current-page.sync="currentpage"
+        :page-size="perpagetable">
+      </el-pagination>
 
     </el-container>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      tableData: [{
-        periodo: '200903',
-        creado: new Date(2003, 1, 10),
-        estado: 'Cerrado',
-        viviendas: '120',
-        efectivas: '120'
-      }, {
-        periodo: '200906',
-        creado: new Date(2003, 1, 10),
-        estado: 'Cerrado',
-        viviendas: '110',
-        efectivas: '110'
-      }, {
-        periodo: '201505',
-        creado: new Date(2003, 1, 10),
-        estado: 'Cerrado',
-        viviendas: '106',
-        efectivas: '106'
-      }, {
-        periodo: '201706',
-        creado: new Date(2003, 1, 10),
-        estado: 'Cerrado',
-        viviendas: '100',
-        efectivas: '100'
-      }, {
-        periodo: '201812',
-        creado: new Date(2003, 1, 10),
-        estado: 'Cerrado',
-        viviendas: '130',
-        efectivas: '130'
-      }, {
-        periodo: '201907',
-        creado: new Date(2003, 1, 10),
-        estado: 'Abierto',
-        viviendas: '',
-        efectivas: ''
-      }, {
-        periodo: '201910',
-        creado: new Date(2003, 1, 10),
-        estado: 'Abierto',
-        viviendas: '',
-        efectivas: ''
-      }],
       search: '',
+      currentpage: 1,
+      perpagetable: 5
     }
+  },
+  computed: {
+    ...mapGetters([
+      'censos'
+    ])
   },
   methods: {
     handleEdit(index, row) {

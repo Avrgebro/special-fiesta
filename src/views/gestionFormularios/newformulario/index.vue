@@ -114,6 +114,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
@@ -136,6 +138,11 @@ export default {
       
     }
   },
+  computed: {
+    ...mapGetters([
+      'nextformid'
+    ])
+  },
   mounted() {
     var edit = this.$route.params.edit
     if(edit){
@@ -143,8 +150,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations('user',['ADD_FORM']),
+
     onSubmit() {// Guardar el formulario nuevo
       this.$message('submit!')
+      this.form.id = this.nextformid
+      this.ADD_FORM(this.form)
     },
     handleDelete(index, row) {// Eliminar una pregunta de la tabla
       this.form.questions.splice(index, 1)
