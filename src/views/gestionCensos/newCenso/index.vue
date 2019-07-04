@@ -4,13 +4,13 @@
       <el-form-item>
         <el-table
           ref="multipleTable"
-          :data="tableData"
+          :data="forms"
           style="width: 50%; display: inline-block;"
           @selection-change="handleSelectionChange">
           
           <el-table-column
             label="Formulario"
-            prop="formname">
+            prop="name">
           </el-table-column>
           <el-table-column
             label="Tipo"
@@ -34,13 +34,19 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Forms from '@/data/forms'
 export default {
   data() {
     return {
-      tableData: Forms.forms,
+      tableData: forms,
       selectedForms: []
     }
+  },
+  computed: {
+    ...mapGetters([
+      'forms'
+    ])
   },
   methods: {
     handleSelectionChange(val) {

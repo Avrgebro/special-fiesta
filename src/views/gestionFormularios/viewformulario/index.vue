@@ -1,6 +1,7 @@
 <template>
   <div class="app-container">
     <questionaire :mode="qmode" :data="qdata" />
+    <el-button style="float: right;" @click="$router.go(-1)">Regresar</el-button>
   </div>
 </template>
 

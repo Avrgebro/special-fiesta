@@ -136,12 +136,18 @@ export default {
       
     }
   },
+  mounted() {
+    var edit = this.$route.params.edit
+    if(edit){
+      this.form = this.$route.params.data 
+    }
+  },
   methods: {
     onSubmit() {// Guardar el formulario nuevo
       this.$message('submit!')
     },
     handleDelete(index, row) {// Eliminar una pregunta de la tabla
-      this.form.questions.splice(index, 1);
+      this.form.questions.splice(index, 1)
     },
     handleDialogClose() {// Cerrar el dialog sin guardar la nueva pregunta
       this.dialogVisible = false

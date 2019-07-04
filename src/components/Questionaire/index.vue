@@ -1,11 +1,11 @@
 <template>
   <div>
-    <h1>{{ data.formname}}</h1>
+    <span>{{ data.formname}}</span>
     <el-form>
       <ul>
         <li v-for="(question, index) in data.questions" v-bind:key="index">
-          <el-form-item :label="question.question">
-            <el-input v-if="question.type == 'Valor'" v-model="formans[index].answer" type="number"></el-input>
+          <el-form-item :label="(index+1) + '. ' + question.question">
+            <el-input v-if="question.type == 'Valor'" v-model="formans[index].answer" type="number" style="width: 150px"></el-input>
             <el-date-picker
               v-if="question.type == 'Fecha'"
               v-model="formans[index].answer"

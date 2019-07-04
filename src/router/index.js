@@ -84,34 +84,6 @@ export const constantRoutes = [
   },
 
   {
-    path: '/formularios',
-    component: Layout,
-    redirect: '/formularios/formulario_1',
-    name: 'Formularios',
-    meta: { title: 'Formularios', icon: 'form' },
-    children: [
-      {
-        path: 'formulario_1',
-        name: 'Form 1',
-        component: () => import('@/views/formularios/formulario_1/index'),
-        meta: { title: 'Formulario_1', icon: 'form' }
-      },
-      {
-        path: 'formulario_2',
-        name: 'Form 2',
-        component: () => import('@/views/formularios/formulario_2/index'),
-        meta: { title: 'Formulario_2', icon: 'form' }
-      },
-      {
-        path: 'formulario_3',
-        name: 'Form 3',
-        component: () => import('@/views/formularios/formulario_3/index'),
-        meta: { title: 'Formulario_3', icon: 'form' }
-      }
-    ]
-  },
-
-  {
     path: '/gestionFormularios',
     component: Layout,
     children: [
@@ -122,10 +94,10 @@ export const constantRoutes = [
         meta: { title: 'Gestion de formularios', icon: 'form' }
       },
       {
-        path: 'nuevo_formulario',
-        name: 'nuevo_formularios',
+        path: 'editor_formulario',
+        name: 'editor_formulario',
         component: () => import('@/views/gestionFormularios/newformulario/index'),
-        meta: { title: 'Nuevo formulario', icon: 'form' },
+        meta: { title: 'Editor de formularios', icon: 'form' },
         hidden: true
       },
       {

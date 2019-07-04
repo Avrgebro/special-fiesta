@@ -5,18 +5,18 @@
         <el-button
           style="float: right;"
           type="success"
-          @click="$router.push('nuevo_formulario')"
+          @click="$router.push('editor_formulario')"
           >
           + Nuevo formulario
         </el-button>
       </el-header>
       
       <el-table
-        :data="tableData.filter(data => !search || data.formname.toLowerCase().includes(search.toLowerCase()))"
+        :data="forms.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase()))"
         style="width: 100%; float: right;">
         <el-table-column
           label="Formularios"
-          prop="formname">
+          prop="name">
         </el-table-column>
         <el-table-column
           label="Tipo"
@@ -49,23 +49,44 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import Forms from '@/data/forms'
 export default {
   data() {
     return {
-      tableData: Forms.forms,
+      tableData: forms,
       search: '',
     }
   },
+  computed: {
+    ...mapGetters([
+      'forms'
+    ])
+  },
   methods: {
     handleEdit(index, row) {
-      console.log(index, row);
+      // console.log(index, row);
+      this.$router.push({name: 'editor_formulario', params: {edit: true, data: row}})
     },
     handleDelete(index, row) {
       console.log(index, row);
+      this.$confirm('Seguro que desa eliminar el formulario?', 'Warning', {
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar',
+          type: 'warning',
+          center: true
+        }).then(() => {
+          this.forms.splice(index, 1)
+          this.$message({
+            type: 'success',
+            message: 'Formulario eliminado'
+          })
+        }).catch(() => {
+          
+        })
     },
     handleView(index, row) {
-      console.log(index, row);
+      // console.log(index, row);
       this.$router.push({name: 'detalle_formulario', params: {data: row}})
     }
   },
