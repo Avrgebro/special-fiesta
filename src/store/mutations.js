@@ -2,6 +2,7 @@ export default {
   Login(state, user) {
     //Administrador 1
     //Encuestador 2
+    //Cliente 3
     state.usuario = user;
     // state.permisos[0].show = false;
     // state.permisos[1].show = false;
@@ -17,5 +18,8 @@ export default {
   },
   storeFormulario(state, formulario) {
     state.newForm = formulario
+  },
+  getCensos(state, censos) {
+    state.censos = censos
   }
 };

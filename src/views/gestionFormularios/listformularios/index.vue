@@ -43,6 +43,7 @@
         </el-table-column>
       </el-table>
       <el-pagination
+        v-if="viewTable"
         style="float: right;"
         background
         layout="prev, pager, next"
@@ -103,7 +104,7 @@ export default {
         })
     },
     handleView(index, row) {
-      // console.log(index, row);
+      console.log(index, row);
       this.$router.push({name: 'detalle_formulario', params: {data: row}})
     }
   },

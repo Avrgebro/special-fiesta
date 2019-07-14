@@ -27,7 +27,8 @@ const store = new Vuex.Store({
     usuario: Object,
     token: Object,
     formularios: Object,
-    newForm: Object
+    newForm: Object,
+    censos: Object
   }
 });
 

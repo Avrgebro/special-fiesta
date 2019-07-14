@@ -57,5 +57,20 @@ export default {
         reject(e)
       })
     })
+  },
+  GetCensos({commit,state}) {
+    let ruta = state.server
+    let res = ruta.concat('api/censo/get')
+    return new Promise((resolve,reject) => {
+      axios.get(res)
+      .then(response => {
+        commit('getCensos',response.data)
+        resolve(response)
+      })
+      .catch(e => {
+        console.log(e)
+        reject(e)
+      })
+    })
   }
 };

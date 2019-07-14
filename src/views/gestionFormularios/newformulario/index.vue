@@ -155,10 +155,8 @@ export default {
     ...mapMutations('user',['ADD_FORM']),
 
     onSubmit() {// Guardar el formulario nuevo
-      console.log(JSON.stringify(this.form))
       this.formularios.push(this.form)
       this.$store.dispatch('StoreFormulario',this.formularios).then(response => {
-        console.log(JSON.stringify(this.$store.state.newForm))
         this.$message('submit!')
       })
       //this.ADD_FORM(this.form)
