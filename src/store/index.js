@@ -6,7 +6,7 @@ import mutations from './mutations';
 import app from './modules/app';
 import settings from './modules/settings';
 import user from './modules/user';
-import menu from './modules/menu';
+//import menu from './modules/menu';
 
 Vue.use(Vuex);
 
@@ -14,16 +14,18 @@ const store = new Vuex.Store({
   modules: {
     app,
     settings,
-    user,
-    menu
+    user
+    //menu
   },
   getters,
   actions,
   mutations,
   state: {
-    server: 'http://localhost:8080/',
+    server: 'http://localhost:8000/',
+    //server: 'http://ec2-52-91-98-76.compute-1.amazonaws.com:8080/',
     permisos: [{ show: false }, { show: false }],
-    usuario: Object
+    usuario: Object,
+    token: Object
   }
 });
 

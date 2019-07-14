@@ -1,4 +1,7 @@
 const getters = {
+  menuItems: state => {
+    return state.menu.items
+  },
   sidebar: state => state.app.sidebar,
   device: state => state.app.device,
   token: state => state.user.token,
