@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { setToken } from '@/utils/auth' // get token from cookie
 
 export default {
   Login({ commit, state }, user) {
@@ -11,7 +12,7 @@ export default {
           alert(JSON.stringify(response.data))
           if (response.data.code === 200) {
             commit('Login', response.data)
-            //setToken(response.data.email)
+            setToken('token')
             alert('Usuario commited')
           }
           resolve(response);

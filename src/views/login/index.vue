@@ -107,8 +107,7 @@ export default {
         this.$store.dispatch('Login', data).then(response => {
           if(this.$store.state.usuario.code === 200) {
             alert('Usuario logueado')
-            this.$router.push({ path: '/dashboard'})
-            //this.$router.push({ path: this.redirect || '/' })
+            this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           } else {
             alert('Algo ta mal en dispatch')

@@ -21,8 +21,8 @@ const store = new Vuex.Store({
   actions,
   mutations,
   state: {
-    server: 'http://localhost:8000/',
-    //server: 'http://ec2-52-91-98-76.compute-1.amazonaws.com:8080/',
+    //server: 'http://localhost:8000/',
+    server: 'http://ec2-52-91-98-76.compute-1.amazonaws.com:8080/',
     permisos: [{ show: false }, { show: false }],
     usuario: Object,
     token: Object
