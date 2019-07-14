@@ -9,16 +9,7 @@ const state = {
   role:'admin',
   avatar: '',
   forms: Forms.forms,
-  censos: [{
-    id: 1,
-    fechaRegistro:'2020-01-04',
-    fechaInicio:'2020-01-04',
-    periodo:'1',
-    estado:'1',
-    viviendas:'1',
-    vivEncuestadas:'1',
-    formulariosId: [1,2,3]
-  }]
+  censos: []
 }
 
 const mutations = {

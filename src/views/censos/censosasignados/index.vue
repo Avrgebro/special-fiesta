@@ -1,33 +1,41 @@
 <template>
   <div class="app-container">
     <el-container>
-      <span>Censos asignados:</span>
-      <el-table
-        :data="censos.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
-        style="width: 100%">
-        <el-table-column
-          label="Periodo"
-          prop="periodo">
-        </el-table-column>
-        <el-table-column
-          label="Creado"
-          prop="fechaRegistro"
-          sortable>
-        </el-table-column>
-        <el-table-column
-          label="Estado"
-          prop="estado"
-          sortable>
-        </el-table-column>
-        <el-table-column
-          align="right">
-          <template slot-scope="scope">
-            <el-button
-              size="mini"
-              @click="handleAns(scope.$index, scope.row)">Responder</el-button>
-          </template>
-        </el-table-column>
-      </el-table>
+      <el-main>
+        <el-row>
+          <span>Censos asignados:</span>
+        </el-row>
+        <el-row>
+          <el-table
+            :data="censos.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
+            style="width: 100%">
+            <el-table-column
+              label="Periodo"
+              prop="periodo">
+            </el-table-column>
+            <el-table-column
+              label="Creado"
+              prop="fechaRegistro"
+              sortable>
+            </el-table-column>
+            <el-table-column
+              label="Estado"
+              prop="estado"
+              sortable>
+            </el-table-column>
+            <el-table-column
+              align="right">
+              <template slot-scope="scope">
+                <el-button
+                  size="mini"
+                  @click="handleAns(scope.$index, scope.row)">Responder</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-row>
+      </el-main>
+      
+      
       
     </el-container>
   </div>
