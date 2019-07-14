@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { setToken } from '@/utils/auth' // get token from cookie
+import { getToken, setToken, removeToken } from '@/utils/auth'
+import { resetRouter } from '@/router'
 
 export default {
   Login({ commit, state }, user) {
@@ -22,5 +23,12 @@ export default {
           reject(e);
         });
     });
+  },
+  Logout({commit,state}) {
+    return new Promise((resolve,reject) => {
+      removeToken()
+      resetRouter()
+      resolve()
+    })
   }
 };
