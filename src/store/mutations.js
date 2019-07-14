@@ -11,5 +11,11 @@ export default {
     // } else {
     //   state.permisos[1].show = true;
     // }
+  },
+  getFormularios(state, formularios) {
+    state.formularios = formularios
+  },
+  storeFormulario(state, formulario) {
+    state.newForm = formulario
   }
 };

@@ -3,7 +3,7 @@
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
 
       <div class="title-container">
-        <h3 class="title">Sistema de Gestion - La Garita</h3>
+        <h3 class="title">Sistema de Gestión - La Garita</h3>
       </div>
 
       <el-form-item prop="username">
@@ -50,6 +50,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import { MessageBox } from 'element-ui'
 
 export default {
   name: 'Login',
@@ -106,11 +107,18 @@ export default {
         var data = {usuario: this.loginForm.username, password: this.loginForm.password}
         this.$store.dispatch('Login', data).then(response => {
           if(this.$store.state.usuario.code === 200) {
-            alert('Usuario logueado')
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           } else {
-            alert('Algo ta mal en dispatch')
+            MessageBox.confirm('Usuario no autorizado por el sistema.', 'Inicio de sesión', {
+              confirmButtonText: 'Intentar de nuevo',
+              cancelButtonText: 'Cancelar',
+              type: 'error'
+            }).then(() => {
+              store.dispatch('user/resetToken').then(() => {
+                location.reload()
+              })
+            })
             this.loading = false
           }
         })

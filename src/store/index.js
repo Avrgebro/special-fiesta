@@ -25,7 +25,9 @@ const store = new Vuex.Store({
     server: 'http://ec2-52-91-98-76.compute-1.amazonaws.com:8080/',
     permisos: [{ show: false }, { show: false }],
     usuario: Object,
-    token: Object
+    token: Object,
+    formularios: Object,
+    newForm: Object
   }
 });
 
