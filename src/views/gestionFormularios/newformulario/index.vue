@@ -3,10 +3,10 @@
     <el-form ref="form" :model="form" label-width="120px">
       
       <el-form-item label="Nombre">
-        <el-input v-model="form.name" placeholder="Nombre del formulario" maxlength="70" show-word-limit/>
+        <el-input v-model="form.nombre" placeholder="Nombre del formulario" maxlength="70" show-word-limit/>
       </el-form-item>
       <el-form-item label="Tipo">
-        <el-radio-group v-model="form.type">
+        <el-radio-group v-model="form.tipo">
           <el-radio label="Residente" />
           <el-radio label="Vivienda" />
         </el-radio-group>
@@ -16,19 +16,19 @@
         <div>
           
           <el-table
-            :data="form.questions.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
+            :data="form.preguntas.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
             style="width: 100%">
             <el-table-column
               label="Pregunta"
-              prop="question">
+              prop="pregunta">
             </el-table-column>
             <el-table-column
               label="Tipo"
-              prop="type">
+              prop="tipoPregunta">
             </el-table-column>
             <el-table-column
               label="Clave"
-              prop="key">
+              prop="clave">
             </el-table-column>
             <el-table-column
               align="right">
@@ -50,7 +50,7 @@
             style="float: right;"
             background
             layout="prev, pager, next"
-            :total="form.questions.length"
+            :total="form.preguntas.length"
             :current-page.sync="currentpage"
             :page-size="perpagetable">
           </el-pagination>
@@ -70,22 +70,22 @@
       :show-close="false">
       <el-form>
         <el-form-item label="Pregunta">
-          <el-input v-model="newquestion.question" />
+          <el-input v-model="newquestion.pregunta" />
         </el-form-item>
         <el-form-item label="Llave">
-          <el-input v-model="newquestion.key" />
+          <el-input v-model="newquestion.clave" />
         </el-form-item>
         <el-form-item label="Tipo">
-          <el-radio-group v-model="newquestion.type">
+          <el-radio-group v-model="newquestion.tipoPregunta">
             <el-radio label="Valor" />
             <el-radio label="Fecha" />
             <el-radio label="Opciones" />
           </el-radio-group>
         </el-form-item>
-        <el-form-item label="Opciones" v-if="newquestion.type == 'Opciones'">
+        <el-form-item label="Opciones" v-if="newquestion.tipoPregunta == 'Opciones'">
           <el-tag
             :key="tag"
-            v-for="tag in newquestion.options"
+            v-for="tag in newquestion.opciones"
             closable
             :disable-transitions="false"
             @close="handleClose(tag)">
@@ -119,16 +119,18 @@ import { mapMutations } from 'vuex'
 export default {
   data() {
     return {
+      formularios: [],
       form: {
-        name: '',
-        type: 'Residente',
-        questions: [],
+        nombre: '',
+        tipo: 'Residente',
+        estado: 'Activo',
+        preguntas: [],
       },
       newquestion: {
-        question: '',
-        key: '',
-        type: 'Valor',
-        options: [],
+        pregunta: '',
+        clave: '',
+        tipoPregunta: 'Valor',
+        opciones: [],
         inputVisible: false,
         inputValue: ''
       },
@@ -153,12 +155,14 @@ export default {
     ...mapMutations('user',['ADD_FORM']),
 
     onSubmit() {// Guardar el formulario nuevo
-      this.$message('submit!')
-      this.form.id = this.nextformid
-      this.ADD_FORM(this.form)
+      this.formularios.push(this.form)
+      this.$store.dispatch('StoreFormulario',this.formularios).then(response => {
+        this.$message('submit!')
+      })
+      //this.ADD_FORM(this.form)
     },
     handleDelete(index, row) {// Eliminar una pregunta de la tabla
-      this.form.questions.splice(index, 1)
+      this.form.preguntas.splice(index, 1)
     },
     handleDialogClose() {// Cerrar el dialog sin guardar la nueva pregunta
       this.dialogVisible = false
@@ -167,24 +171,24 @@ export default {
     handleDialogSave() {// Cerrar el dialog y guardar la nueva pregunta
       this.dialogVisible = false
       var nq = {}
-      nq.question = this.newquestion.question
-      nq.key = this.newquestion.key
-      nq.type = this.newquestion.type
-      nq.options = this.newquestion.options
+      nq.pregunta = this.newquestion.pregunta
+      nq.clave = this.newquestion.clave
+      nq.tipoPregunta = this.newquestion.tipoPregunta
+      nq.opciones = this.newquestion.opciones
 
-      this.form.questions.push(nq)
+      this.form.preguntas.push(nq)
       this.cleanQuestionState()
     },
     cleanQuestionState() {// volver los valores a 0
-      this.newquestion.question = ''
-      this.newquestion.key = ''
-      this.newquestion.type = 'Valor'
-      this.newquestion.options = []
+      this.newquestion.pregunta = ''
+      this.newquestion.clave = ''
+      this.newquestion.tipoPregunta = 'Valor'
+      this.newquestion.opciones = []
       this.newquestion.inputVisible = false
       this.inputValue = ''
     },
     handleClose(tag) {
-      this.newquestion.options.splice(this.newquestion.options.indexOf(tag), 1);
+      this.newquestion.opciones.splice(this.newquestion.opciones.indexOf(tag), 1);
     },
     showInput() {
       this.newquestion.inputVisible = true;
@@ -195,7 +199,7 @@ export default {
     handleInputConfirm() {
       let inputValue = this.newquestion.inputValue;
       if (inputValue) {
-        this.newquestion.options.push(inputValue);
+        this.newquestion.opciones.push(inputValue);
       }
       this.newquestion.inputVisible = false;
       this.newquestion.inputValue = '';

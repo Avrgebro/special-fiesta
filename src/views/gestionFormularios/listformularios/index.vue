@@ -12,15 +12,15 @@
       </el-header>
       
       <el-table
-        :data="forms.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase())).slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
-        style="width: 100%; float: right;">
+        :data="tableData.filter(data => !search || data.name.toLowerCase().includes(search.toLowerCase())).slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
+        style="width: 100%; float: right;" v-if="viewTable">
         <el-table-column
           label="Formularios"
-          prop="name">
+          prop="nombre">
         </el-table-column>
         <el-table-column
           label="Tipo"
-          prop="type">
+          prop="tipo">
         </el-table-column>
         <el-table-column
           align="right">
@@ -43,10 +43,11 @@
         </el-table-column>
       </el-table>
       <el-pagination
+        v-if="viewTable"
         style="float: right;"
         background
         layout="prev, pager, next"
-        :total="forms.length"
+        :total="tableData.length"
         :current-page.sync="currentpage"
         :page-size="perpagetable">
       </el-pagination>
@@ -57,15 +58,23 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import Forms from '@/data/forms'
+//import Forms from '@/data/forms'
 export default {
   data() {
     return {
-      tableData: Forms.forms,
+      tableData: null,
       search: '',
       currentpage: 1,
-      perpagetable: 5
+      perpagetable: 5,
+      viewTable: false
     }
+  },
+  created: function () {
+    this.$store.dispatch('GetFormularios').then(response => {
+      console.log(JSON.stringify(this.$store.state.formularios))
+      this.tableData = this.$store.state.formularios
+      this.viewTable = true
+    })
   },
   computed: {
     ...mapGetters([
@@ -95,7 +104,7 @@ export default {
         })
     },
     handleView(index, row) {
-      // console.log(index, row);
+      console.log(index, row);
       this.$router.push({name: 'detalle_formulario', params: {data: row}})
     }
   },
