@@ -27,5 +27,11 @@ export default {
   },
   getFams(state, familias) {
     state.familias = familias
+  },
+  getAllFams(state, fams) {
+    state.fams = fams
+  },
+  newFam(state, fam) {
+    state.newFam = fam
   }
 };

@@ -157,7 +157,8 @@ export default {
     onSubmit() {// Guardar el formulario nuevo
       this.formularios.push(this.form)
       this.$store.dispatch('StoreFormulario',this.formularios).then(response => {
-        this.$message('submit!')
+        this.$message('Formulario agregado correctamente.')
+        this.$router.push({name: 'lista_formularios'})
       })
       //this.ADD_FORM(this.form)
     },

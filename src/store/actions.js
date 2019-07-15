@@ -134,6 +134,37 @@ export default {
           reject(e)
         })
     })
+  },
+
+  getAllFams({commit,state}) {
+    let ruta = state.server
+    let res = ruta.concat('api/vivienda/getViviendas')
+    return new Promise((resolve,reject) => {
+      axios.get(res).then(response => {
+        commit('getAllFams',response.data)
+        resolve(response)
+      })
+      .catch(e => {
+        console.log(e)
+        reject(e)
+      })
+    })
+  },
+
+  storeFamilia({commit,state},fam) {
+    let ruta = state.server
+    let res = ruta.concat('api/vivienda/crear')
+    return new Promise((resolve,reject) => {
+      axios.post(res,fam)
+      .then(response => {
+        commit('newFam',response.data)
+        resolve(response)
+      })
+      .catch(e => {
+        console.log(e)
+        reject(e)
+      })
+    })
   }
   
 }

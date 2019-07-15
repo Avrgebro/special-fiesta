@@ -139,6 +139,21 @@ export const constantRoutes = [
       }
     ]
   },
+  
+  {
+    path: '/gestionFamilias',
+    component: Layout,
+    hidden: !['1'].includes(getToken()),
+    children: [
+      {
+        path: 'gestion_familias',
+        name: 'gestion_familias',
+        component: () => import('@/views/gestionFamilias/index'),
+        meta: { title: 'Gestion de familias', icon: 'peoples'}
+      }
+    ]
+
+  },
 
   {
     path: '/gestionFormularios',

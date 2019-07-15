@@ -26,7 +26,9 @@ const store = new Vuex.Store({
     newForm: Object,
     censos: Object,
     newCenso: Object,
-    familias: Object
+    familias: Object,
+    fams: Object,
+    newFam: Object
   }
 });
 
