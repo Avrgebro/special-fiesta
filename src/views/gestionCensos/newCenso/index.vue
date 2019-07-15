@@ -3,18 +3,19 @@
     <el-form>
       <el-form-item label="Asignar formularios">
         <el-table
+          v-if="viewTable"
           ref="multipleTable"
-          :data="forms"
+          :data="formularios"
           style="width: 50%; display: inline-block;"
           @selection-change="handleSelectionChange">
           
           <el-table-column
             label="Formulario"
-            prop="name">
+            prop="nombre">
           </el-table-column>
           <el-table-column
             label="Tipo"
-            prop="type"
+            prop="tipo"
             sortable>
           </el-table-column>
           <el-table-column
@@ -49,12 +50,12 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
 import { mapMutations } from 'vuex'
-import Forms from '@/data/forms'
 export default {
   data() {
     return {
+      formularios: null,
+      viewTable: false,
       censo: {
         fechaRegistro: new Date().toISOString().slice(0, 10),
         fechaInicio:'',
@@ -68,23 +69,22 @@ export default {
       perpagetable: 5
     }
   },
-  computed: {
-    ...mapGetters([
-      'forms',
-      'nextcensoid'
-    ])
+  created: function () {
+    this.$store.dispatch('GetFormularios').then(response => {
+      this.formularios = this.$store.state.formularios
+      this.viewTable = true
+    })
   },
   methods: {
-    ...mapMutations('user', ['ADD_CENSO']),
     handleSelectionChange(val) {
-      this.censo.formulariosId = val.map(form => form.id);;
+      this.censo.formulariosId = val.map(form => form.idFormulario);;
     },
     onSubmit(){
       this.censo.estado = this.censo.estado == true ? '1' : '0'
-      var id = this.nextcensoid
-      this.censo.id = id
-      console.log(this.censo)
-      this.ADD_CENSO(this.censo)
+      console.log(JSON.stringify(this.censo))
+      this.$store.dispatch('StoreCenso',this.censo).then(response => {
+        console.log(this.$store.state.newCenso)
+      })
       this.$router.go(-1)
     }
   }

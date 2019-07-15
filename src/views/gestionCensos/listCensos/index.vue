@@ -12,8 +12,8 @@
       </el-header>
       
       <el-table
-        :data="censos.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
-        style="width: 100%">
+        :data="listaCensos.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
+        style="width: 100%" v-if="viewCensos">
         <el-table-column
           label="Periodo"
           prop="periodo">
@@ -52,10 +52,11 @@
         </el-table-column>
       </el-table>
       <el-pagination
+        v-if="viewCensos"
         style="float: right;"
         background
         layout="prev, pager, next"
-        :total="censos.length"
+        :total="listaCensos.length"
         :current-page.sync="currentpage"
         :page-size="perpagetable">
       </el-pagination>
@@ -65,19 +66,22 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+
 export default {
   data() {
     return {
       search: '',
       currentpage: 1,
-      perpagetable: 5
+      perpagetable: 5,
+      listaCensos: null,
+      viewCensos: false
     }
   },
-  computed: {
-    ...mapGetters([
-      'censos'
-    ])
+  created: function () {
+    this.$store.dispatch('GetCensos').then(response => {
+      this.listaCensos = this.$store.state.censos
+      this.viewCensos = true
+    })
   },
   methods: {
     handleEdit(index, row) {
