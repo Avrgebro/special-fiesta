@@ -104,7 +104,7 @@ export default {
         })
     },
     handleView(index, row) {
-      console.log(index, row);
+      console.log(row)
       this.$router.push({name: 'detalle_formulario', params: {data: row}})
     }
   },

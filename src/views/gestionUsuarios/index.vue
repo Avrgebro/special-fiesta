@@ -143,6 +143,7 @@
 </template>
 
 <script>
+import { stringify } from 'querystring';
 export default {
   data() {
     return {
@@ -174,7 +175,7 @@ export default {
         idRol: 1,
         nombres: '',
         password: '',
-        personaId: null,
+        personaId: 1,
         usuario: '',
         usuarioId: null
       }
@@ -205,7 +206,17 @@ export default {
         .catch(() => {
           this.$message('OOPSS!! estamos teniendo problemas en este momento');
         })
-        
+        // this.postuser.activo = true
+        // this.postuser.apeMaterno = ''
+        // this.postuser.apePaterno = ''
+        // this.postuser.email = ''
+        // this.postuser.fecNacimiento = ''
+        // this.postuser.idRol = 1
+        // this.postuser.nombres = ''
+        // this.postuser.password = ''
+        // this.postuser.personaId = null
+        // this.postuser.usuario = ''
+        // this.postuser.usuarioId = null
       }
     },
     handleDialogClose(){

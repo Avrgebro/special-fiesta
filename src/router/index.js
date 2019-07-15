@@ -100,7 +100,7 @@ export const constantRoutes = [
         path: 'censos_asignados',
         name: 'censos_asignados',
         component: () => import('@/views/censos/censosasignados/index'),
-        meta: { title: 'Censos Asignados', icon: 'form' }
+        meta: { title: 'Censos', icon: 'form' }
       },
       {
         path: 'responder_censos',
