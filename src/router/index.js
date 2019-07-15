@@ -64,6 +64,19 @@ export const constantRoutes = [
   },
 
   {
+    path: '/usuarios',
+    component: Layout,
+    children: [
+      {
+        path: 'gestion_usuarios',
+        name: 'gestion usuarios',
+        component: () => import('@/views/gestionUsuarios/index'),
+        meta: { title: 'Gestion de usuarios', icon: 'peoples' }
+      }
+    ]
+  },
+
+  {
     path: '/reportes',
     component: Layout,
     redirect: '/reportes/tablas',

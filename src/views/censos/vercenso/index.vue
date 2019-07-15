@@ -42,7 +42,15 @@ export default {
     ...mapGetters(['forms']),
     formsAsigned: function () {
       // `this` points to the vm instance
-      return this.forms.filter(form => form.id in this.censo.formulariosId);
+      var forms = []
+      for(var i=0; i < this.forms.length; i++) {
+        if(this.censo.formulariosId.includes(this.forms[i].id)){
+          forms.push(this.forms[i])
+        }
+      }
+
+      return forms
+      // return this.forms.filter(form => this.censo.formulariosId.includes(form.id));
     }
 
   },

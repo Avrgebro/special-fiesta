@@ -2,6 +2,8 @@ import axios from 'axios'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
+//const ruta = state.server
+
 export default {
   Login({ commit, state }, user) {
     let ruta = state.server;
@@ -21,6 +23,7 @@ export default {
         });
     });
   },
+
   Logout({commit,state}) {
     return new Promise((resolve,reject) => {
       removeToken()
@@ -28,6 +31,7 @@ export default {
       resolve()
     })
   },
+
   GetFormularios({commit,state}) {
     let ruta = state.server
     let res = ruta.concat('api/formulario/get')
@@ -43,6 +47,7 @@ export default {
       })
     })
   },
+
   StoreFormulario({commit,state}, formulario) {
     let ruta = state.server
     let res = ruta.concat('api/formulario/crear')
@@ -58,6 +63,7 @@ export default {
       })
     })
   },
+
   GetCensos({commit,state}) {
     let ruta = state.server
     let res = ruta.concat('api/censo/get')
@@ -73,6 +79,7 @@ export default {
       })
     })
   },
+
   StoreCenso({commit,state}, censo) {
     let ruta = state.server
     let res = ruta.concat('api/censo/crear')
@@ -87,5 +94,32 @@ export default {
         reject(e)
       })
     })
+  },
+
+  getUsers({commit, state}) {
+    let ruta = state.server
+    let url = ruta.concat('api/usuario/get')
+    return new Promise((resolve, reject) => {
+      axios.get(url).then(response => {
+          resolve(response)
+        }).catch(e => {
+          alert(e)
+          reject(e)
+        })
+    })
+  },
+
+  createUser({commit, state}, user) {
+    let ruta = state.server
+    let url = ruta.concat('api/usuario/insertar')
+    return new Promise((resolve, reject) => {
+      axios.post(url, user).then(response => {
+          resolve(response)
+        }).catch(e => {
+          alert(e)
+          reject(e)
+        })
+    })
   }
-};
+  
+}

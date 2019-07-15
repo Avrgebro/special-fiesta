@@ -109,6 +109,7 @@
         </div>
       </el-main>
     </el-container>
+    
   </div>
 </template>
 
@@ -117,6 +118,8 @@ import Baseline from '@/data/baseline'
 import Filters from '@/data/filters'
 import Registros from '@/data/registros'
 export default {
+  components: {
+  },
   data() {
     return {
       registros: Registros.registros,
