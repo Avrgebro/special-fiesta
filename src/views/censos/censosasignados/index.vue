@@ -32,6 +32,14 @@
               </template>
             </el-table-column>
           </el-table>
+          <el-pagination
+            style="float: right;"
+            background
+            layout="prev, pager, next"
+            :total="listaCensos.length"
+            :current-page.sync="currentpage"
+            :page-size="perpagetable">
+          </el-pagination>
         </el-row>
       </el-main>
     </el-container>
