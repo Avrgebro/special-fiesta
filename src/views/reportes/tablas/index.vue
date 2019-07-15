@@ -88,7 +88,7 @@
 
         <div class="div-module">
           <h1 v-if="!edittitle">{{ title }}</h1>
-          <el-input style="width: 350px":placeholder="title" v-model="title" v-if="edittitle"></el-input>
+          <el-input style="width: 350px" :placeholder="title" v-model="title" v-if="edittitle"></el-input>
           <i :class="edittitle ? 'el-icon-success' : 'el-icon-edit'" style="margin-left: 5px;" v-on:click="edittitle = !edittitle"></i>
           <div style="margin-left: 50px;">
             <el-button type="success" @click="handleGen()">Generar</el-button>

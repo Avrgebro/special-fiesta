@@ -1,5 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { getToken, setToken, removeToken } from '@/utils/auth'
+
+
 
 Vue.use(Router);
 
@@ -30,6 +33,9 @@ import Layout from '@/layout';
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
+var sessToken = getToken()
+
+
 export const constantRoutes = [
   {
     path: '/login',
@@ -63,23 +69,12 @@ export const constantRoutes = [
     ]
   },
 
-  {
-    path: '/usuarios',
-    component: Layout,
-    children: [
-      {
-        path: 'gestion_usuarios',
-        name: 'gestion usuarios',
-        component: () => import('@/views/gestionUsuarios/index'),
-        meta: { title: 'Gestion de usuarios', icon: 'peoples' }
-      }
-    ]
-  },
 
   {
     path: '/reportes',
     component: Layout,
     redirect: '/reportes/tablas',
+    hidden: !['1','2','3'].includes(sessToken),
     name: 'Reportes y estadisticas',
     meta: { title: 'Reportes', icon: 'documentation' },
     children: [
@@ -101,6 +96,7 @@ export const constantRoutes = [
   {
     path: '/censos',
     component: Layout,
+    hidden: !['2'].includes(sessToken),
     children: [
       {
         path: 'censos_asignados',
@@ -126,8 +122,23 @@ export const constantRoutes = [
   },
 
   {
+    path: '/gestionUsuarios',
+    component: Layout,
+    hidden: !['1'].includes(sessToken),
+    children: [
+      {
+        path: 'gestion_usuarios',
+        name: 'gestion usuarios',
+        component: () => import('@/views/gestionUsuarios/index'),
+        meta: { title: 'Gestion de usuarios', icon: 'peoples' }
+      }
+    ]
+  },
+
+  {
     path: '/gestionFormularios',
     component: Layout,
+    hidden: !['1'].includes(sessToken),
     children: [
       {
         path: 'lista_formularios',
@@ -158,6 +169,7 @@ export const constantRoutes = [
   {
     path: '/gestionCensos',
     component: Layout,
+    hidden: !['1'].includes(sessToken),
     children: [
       {
         path: 'lista_censos',

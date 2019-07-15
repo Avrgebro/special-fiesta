@@ -10,7 +10,8 @@ const getters = {
   forms: state => state.user.forms,
   censos: state => state.user.censos,
   nextformid: state => { return Math.max(...state.user.forms.map(form => form.id))+1 },
-  nextcensoid: state => { return Math.max(...state.user.censos.map(censo =>censo.id))+1}
+  nextcensoid: state => { return Math.max(...state.user.censos.map(censo =>censo.id))+1},
+  authrole: state => { return state.usuario.idRol}
 
 }
 export default getters

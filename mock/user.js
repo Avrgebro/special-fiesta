@@ -3,8 +3,11 @@ const tokens = {
   admin: {
     token: 'admin-token'
   },
-  editor: {
-    token: 'editor-token'
+  encuestador: {
+    token: 'encuestador-token'
+  },
+  cliente: {
+    token: 'cliente-token'
   }
 }
 
@@ -15,8 +18,14 @@ const users = {
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
     name: 'Test user - Admin'
   },
-  'editor-token': {
-    roles: ['editor'],
+  'encuestador-token': {
+    roles: ['encuestador'],
+    introduction: 'I am an editor',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
+    name: 'Test user - Editor'
+  },
+  'cliente-token': {
+    roles: ['cliente'],
     introduction: 'I am an editor',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
     name: 'Test user - Editor'
@@ -30,6 +39,7 @@ export default [
     type: 'post',
     response: config => {
       const { username } = config.body
+      console.log(username)
       const token = tokens[username]
 
       // mock error

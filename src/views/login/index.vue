@@ -50,6 +50,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
+import { resetRouter } from '@/router'
 
 export default {
   name: 'Login',
@@ -70,8 +71,8 @@ export default {
     }
     return {
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '',
+        password: ''
       },
       loginRules: {
         username: [{ required: true, trigger: 'blur', validator: validateUsername }],

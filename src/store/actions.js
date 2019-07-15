@@ -15,7 +15,7 @@ export default {
           alert(JSON.stringify(response.data))
           if (response.data.code === 200) {
             commit('Login', response.data)
-            setToken('token')
+            setToken(response.data.idRol)
             alert('Usuario commited')
           }
           resolve(response);
