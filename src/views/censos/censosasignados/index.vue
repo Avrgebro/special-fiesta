@@ -3,7 +3,7 @@
     <el-container>
       <el-main>
         <el-row>
-          <span>Censos asignados:</span>
+          <span>Censos:</span>
         </el-row>
         <el-row>
           <el-table
