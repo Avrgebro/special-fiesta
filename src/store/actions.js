@@ -72,5 +72,20 @@ export default {
         reject(e)
       })
     })
+  },
+  StoreCenso({commit,state}, censo) {
+    let ruta = state.server
+    let res = ruta.concat('api/censo/crear')
+    return new Promise((resolve,reject) => {
+      axios.post(res, censo)
+      .then(response => {
+        commit('storeCenso',response.data)
+        resolve(response)
+      })
+      .catch(e => {
+        console.log(e)
+        reject(e)
+      })
+    })
   }
 };

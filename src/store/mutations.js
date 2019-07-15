@@ -21,5 +21,8 @@ export default {
   },
   getCensos(state, censos) {
     state.censos = censos
+  },
+  storeCenso(state, censo) {
+    state.newCenso = censo
   }
 };
