@@ -36,20 +36,6 @@
           label="Efectivas"
           prop="vivEncuestadas">
         </el-table-column>
-        <el-table-column
-          align="right">
-          <template slot-scope="scope">
-            <el-button v-if="scope.row.estado == '0'"
-              size="mini"
-              @click="handleView(scope.$index, scope.row)">Ver</el-button>
-            <el-button v-else
-              size="mini"
-              @click="handleEdit(scope.$index, scope.row)">Editar</el-button>
-            <el-button
-              size="mini"
-              @click="console.log(scope.row)">Aplicar a vivienda</el-button>
-          </template>
-        </el-table-column>
       </el-table>
       <el-pagination
         v-if="viewCensos"

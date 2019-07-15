@@ -103,11 +103,15 @@ export default {
         this.$refs.password.focus()
       })
     },
+    routerHelper() {
+      resetRouter()
+    },
     handleLogin() {
         this.loading = true
         var data = {usuario: this.loginForm.username, password: this.loginForm.password}
         this.$store.dispatch('Login', data).then(response => {
           if(this.$store.state.usuario.code === 200) {
+            this.routerHelper()
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
           } else {

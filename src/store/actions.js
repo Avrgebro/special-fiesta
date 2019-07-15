@@ -109,6 +109,19 @@ export default {
     })
   },
 
+  getFams({commit, state}) {
+    let ruta = state.server
+    let url = ruta.concat('api/vivienda/get')
+    return new Promise((resolve, reject) => {
+      axios.get(url).then(response => {
+          resolve(response)
+        }).catch(e => {
+          alert(e)
+          reject(e)
+        })
+    })
+  },
+
   createUser({commit, state}, user) {
     let ruta = state.server
     let url = ruta.concat('api/usuario/insertar')

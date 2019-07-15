@@ -33,8 +33,6 @@ import Layout from '@/layout';
  * a base page that does not have permission requirements
  * all roles can be accessed
  */
-var sessToken = getToken()
-
 
 export const constantRoutes = [
   {
@@ -74,7 +72,7 @@ export const constantRoutes = [
     path: '/reportes',
     component: Layout,
     redirect: '/reportes/tablas',
-    hidden: !['1','2','3'].includes(sessToken),
+    hidden: !['1','2','3'].includes(getToken()),
     name: 'Reportes y estadisticas',
     meta: { title: 'Reportes', icon: 'documentation' },
     children: [
@@ -96,7 +94,7 @@ export const constantRoutes = [
   {
     path: '/censos',
     component: Layout,
-    hidden: !['2'].includes(sessToken),
+    hidden: !['1','2'].includes(getToken()),
     children: [
       {
         path: 'censos_asignados',
@@ -124,7 +122,7 @@ export const constantRoutes = [
   {
     path: '/gestionUsuarios',
     component: Layout,
-    hidden: !['1'].includes(sessToken),
+    hidden: !['1'].includes(getToken()),
     children: [
       {
         path: 'gestion_usuarios',
@@ -138,7 +136,7 @@ export const constantRoutes = [
   {
     path: '/gestionFormularios',
     component: Layout,
-    hidden: !['1'].includes(sessToken),
+    hidden: !['1'].includes(getToken()),
     children: [
       {
         path: 'lista_formularios',
@@ -169,7 +167,7 @@ export const constantRoutes = [
   {
     path: '/gestionCensos',
     component: Layout,
-    hidden: !['1'].includes(sessToken),
+    hidden: !['1'].includes(getToken()),
     children: [
       {
         path: 'lista_censos',

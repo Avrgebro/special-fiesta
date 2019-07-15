@@ -7,7 +7,7 @@
         </el-row>
         <el-row>
           <el-table
-            :data="censos.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
+            :data="listaCensos.slice(((currentpage-1)*perpagetable), ((currentpage-1)*perpagetable)+perpagetable)"
             style="width: 100%">
             <el-table-column
               label="Periodo"
@@ -28,16 +28,25 @@
               <template slot-scope="scope">
                 <el-button
                   size="mini"
-                  @click="handleAns(scope.$index, scope.row)">Responder</el-button>
+                  @click="handleAns(scope.$index, scope.row)">Aplicar a Familia</el-button>
               </template>
             </el-table-column>
           </el-table>
         </el-row>
       </el-main>
-      
-      
-      
     </el-container>
+
+    <el-dialog title="Seleccionar familia" :visible.sync="showDialog">
+      <el-table 
+        :data="listaFamilias"
+        highlight-current-row
+        @current-change="handleCurrentChange">
+        <el-table-column type="index"></el-table-column>
+        <el-table-column property="nombreContacto" label="Contacto"></el-table-column>
+        <el-table-column property="direccion" label="Direccion"></el-table-column>
+        <el-table-column property="telefonoContacto" label="Telefono"></el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -48,8 +57,22 @@ export default {
   data() {
     return {
       currentpage: 1,
-      perpagetable: 5
+      perpagetable: 5,
+      listaCensos: [],
+      listaFamilias: [],
+      showDialog: false,
+      currentselection: null
     }
+  },
+  mounted() {
+    this.$store.dispatch('GetCensos').then(response => {
+      this.listaCensos = this.$store.state.censos
+    })
+
+    this.$store.dispatch('getFams').then(response => {
+      this.listaFamilias = response.data
+      console.log(this.listaFamilias)
+    })
   },
   computed: {
     ...mapGetters(['censos', 'forms'])
@@ -57,7 +80,12 @@ export default {
   methods: {
     ...mapMutations('user', ['ADD_CENSO']),
     handleAns(index, row) {
-      this.$router.push({name: 'ver_censo', params: {edit: true, data: row}})
+      //this.$router.push({name: 'ver_censo', params: {edit: true, data: row}})
+      this.showDialog = true
+      this.currentselection = row
+    },
+    handleCurrentChange(val){
+      this.$router.push({name: 'ver_censo', params: {edit: true, data: this.currentselection}})
     }
 
   }
