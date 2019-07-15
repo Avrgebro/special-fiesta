@@ -31,7 +31,7 @@ export default {
       preguntas: [{"pregunta":"cuantos anos tienes","clave":"anos","tipoPregunta":"Valor","opciones":[]},{"pregunta":"fecha de nacimiento","clave":"fecha_nac","tipoPregunta":"Fecha","opciones":[]},{"pregunta":"operador movil","clave":"operador_movil","tipoPregunta":"Opciones","opciones":["Movistar","Claro","Entel","Tuenti","Bitel"]}]
     },
   {
-    id: 7,
+    id: 11,
     name: 'Información General',
     type: 'Vivienda',
     preguntas: [
@@ -42,7 +42,7 @@ export default {
     ]
   },
   {
-    id: 8,
+    id: 16,
     name: 'Educación',
     type: 'Residente',
     preguntas: [

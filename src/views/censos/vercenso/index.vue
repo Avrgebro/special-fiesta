@@ -91,10 +91,12 @@ export default {
   computed: {
     ...mapGetters(['forms']),
     formsAsigned: function () {
-      console.log(JSON.stringify(this.censo))
-      console.log(JSON.stringify(this.familia))
+      //console.log(JSON.stringify(this.censo))
+      //console.log(JSON.stringify(this.familia))
       this.residentes = this.familia.residentes
       // `this` points to the vm instance
+      console.log(this.forms)
+      console.log(this.censo.formulariosId)
       var forms = []
       for(var i=0; i < this.forms.length; i++) {
         if(this.censo.formulariosId.includes(this.forms[i].id)){
@@ -105,7 +107,7 @@ export default {
           }
         }
       }
-
+      console.log(forms)
       return forms
       // return this.forms.filter(form => this.censo.formulariosId.includes(form.id));
     }

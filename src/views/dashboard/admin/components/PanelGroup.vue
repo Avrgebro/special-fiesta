@@ -9,7 +9,7 @@
           <div class="card-panel-text">
             Habitantes
           </div>
-          <count-to :start-val="0" :end-val="187" :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val="35" :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>

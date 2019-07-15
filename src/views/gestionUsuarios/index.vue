@@ -188,17 +188,33 @@ export default {
   },
   methods: {
     handleEdit(index, user) {
-      this.postuser = user
+      // this.postuser = user
+
+      this.postuser.activo = user.activo
+      this.postuser.apeMaterno = user.apeMaterno
+      this.postuser.apePaterno = user.apePaterno
+      this.postuser.email = user.email
+      this.postuser.fecNacimiento = user.fecNacimiento
+      this.postuser.idRol = user.idRol
+      this.postuser.nombres = user.nombres
+      this.postuser.password = user.password
+      this.postuser.personaId = user.personaId
+      this.postuser.usuario = user.usuario
+      this.postuser.usuarioId = user.usuarioId
+
       this.dialogVisible = true
+      console.log(this.postuser)
     },
     handleDialogSave(){
-      console.log(this.postuser)
+      // console.log(this.postuser)
       this.dialogVisible = false
 
       if(this.postuser.usuarioId == null){//nuevo usuario
+        console.log('nuevo')
         this.$store.dispatch('createUser', this.postuser).then(response => {
           if(response.status === 200) {
             this.getUsers()
+            this.handleDialogClose()
           } else {
             this.$message('OOPSS!! estamos teniendo problemas en este momento');
           }
@@ -217,7 +233,23 @@ export default {
         // this.postuser.personaId = null
         // this.postuser.usuario = ''
         // this.postuser.usuarioId = null
+      } else {
+        console.log('editar')
+        this.$store.dispatch('editUser', this.postuser).then(response => {
+          if(response.status === 200) {
+            console.log(response.data)
+            this.getUsers()
+            this.handleDialogClose()
+          } else {
+            this.$message('Error al actualizar el usuario')
+          }
+        })
+        .catch(() => {
+          this.$message('OOPSS!! estamos teniendo problemas en este momento')
+        })
       }
+
+      // this.handleDialogClose()
     },
     handleDialogClose(){
       this.dialogVisible = false

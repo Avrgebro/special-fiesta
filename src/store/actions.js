@@ -136,6 +136,19 @@ export default {
     })
   },
 
+  editUser({commit, state}, user) {
+    let ruta = state.server
+    let url = ruta.concat('api/usuario/actualizar')
+    return new Promise((resolve, reject) => {
+      axios.post(url, user).then(response => {
+          resolve(response)
+        }).catch(e => {
+          alert(e)
+          reject(e)
+        })
+    })
+  },
+
   getAllFams({commit,state}) {
     let ruta = state.server
     let res = ruta.concat('api/vivienda/getViviendas')
