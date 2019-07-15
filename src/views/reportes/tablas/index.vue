@@ -82,17 +82,19 @@
 
                 </el-container>
               </el-main>
-              <el-footer>
-                <el-button style="float: right;" @click="handleGen()">Generar</el-button>
-              </el-footer>
             </el-container>
           </el-collapse-item>
         </el-collapse>
 
         <div class="div-module">
           <h1 v-if="!edittitle">{{ title }}</h1>
-          <el-input :placeholder="title" v-model="title" v-if="edittitle"></el-input>
+          <el-input style="width: 350px":placeholder="title" v-model="title" v-if="edittitle"></el-input>
           <i :class="edittitle ? 'el-icon-success' : 'el-icon-edit'" style="margin-left: 5px;" v-on:click="edittitle = !edittitle"></i>
+          <div style="margin-left: 50px;">
+            <el-button type="success" @click="handleGen()">Generar</el-button>
+            <el-button @click="onExport()" :disabled="tableData.length == 0">Exportar a Excel</el-button> 
+          </div>
+          
         </div>
 
         <div class="div-module">
@@ -117,6 +119,7 @@
 import Baseline from '@/data/baseline'
 import Filters from '@/data/filters'
 import Registros from '@/data/registros'
+import XLSX from 'xlsx'
 export default {
   components: {
   },
@@ -156,6 +159,19 @@ export default {
       }
 
       this.tableData = data
+    },
+    onExport() {
+      
+      var dataWS = XLSX.utils.json_to_sheet(this.tableData) 
+
+      var wb = XLSX.utils.book_new() 
+
+
+      XLSX.utils.book_append_sheet(wb, dataWS, 'report') 
+
+
+      var filename = this.title.split(' ').join('+');
+      XLSX.writeFile(wb, filename.concat('.xlsx')) 
     }
   }
 }
