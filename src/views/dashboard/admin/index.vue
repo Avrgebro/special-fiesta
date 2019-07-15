@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-editor-container">
-    <span>Bienvenido, {{ user.nombre }}</span>
+    <span>Bienvenido, {{ user1.nombre }}</span>
     
     <panel-group @handleSetLineChartData="handleSetLineChartData" />
 
@@ -76,10 +76,12 @@ export default {
   data() {
     return {
       lineChartData: lineChartData.newVisitis,
+      user1: null
     }
   },
   mounted() {
-    console.log(this.$store.state.usuario.nombre)
+    console.log(this.$store.state.usuario)
+    this.user1 = this.$store.state.usuario
   },
   computed: {
     ...mapGetters([
