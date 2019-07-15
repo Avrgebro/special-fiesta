@@ -114,6 +114,7 @@ export default {
     let url = ruta.concat('api/vivienda/get')
     return new Promise((resolve, reject) => {
       axios.get(url).then(response => {
+          commit('getFams',response.data)
           resolve(response)
         }).catch(e => {
           alert(e)

@@ -115,6 +115,13 @@ export const constantRoutes = [
         component: () => import('@/views/censos/vercenso/index'),
         meta: { title: 'Detalle Censo', icon: 'form' },
         hidden: true
+      },
+      {
+        path: 'ver_censo_residente',
+        name: 'ver_censo_residente',
+        component: () => import('@/views/censos/vercensoresi/index'),
+        meta: { title: 'Censos Residente', icon: 'form'},
+        hidden: true
       }
     ]
   },

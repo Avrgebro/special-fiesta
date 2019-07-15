@@ -21,7 +21,7 @@ export default {
   methods: {
     handleBack() {
       var prev = this.$route.params.prev
-      this.$router.push({name: 'ver_censo', params: {edit: true, data: prev}})
+      this.$router.push({name: 'censos_asignados', params: {edit: true, data: prev}})
     }
   }
 }

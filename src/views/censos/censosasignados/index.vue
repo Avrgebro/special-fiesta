@@ -68,6 +68,7 @@ export default {
       perpagetable: 5,
       listaCensos: [],
       listaFamilias: [],
+      familia: null,
       showDialog: false,
       currentselection: null
     }
@@ -78,8 +79,7 @@ export default {
     })
 
     this.$store.dispatch('getFams').then(response => {
-      this.listaFamilias = response.data
-      console.log(this.listaFamilias)
+      this.listaFamilias = this.$store.state.familias
     })
   },
   computed: {
@@ -93,7 +93,8 @@ export default {
       this.currentselection = row
     },
     handleCurrentChange(val){
-      this.$router.push({name: 'ver_censo', params: {edit: true, data: this.currentselection}})
+      this.familia = val
+      this.$router.push({name: 'ver_censo', params: {edit: true, data: this.currentselection, fam: this.familia}})
     }
 
   }
