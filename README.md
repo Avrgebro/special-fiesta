@@ -1,82 +1,53 @@
-# vue-admin-template
+# Datum Garita
 
-English | [简体中文](./README-zh.md)
+> Sistema de gestión de censos e información poblacional enfocado en la población de La Garita.
 
-> A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
+**Solución basada en la plantilla `vuestic-admin-template`**
 
-**Live demo:** http://panjiachen.github.io/vue-admin-template
-
-
-**The current version is `v4.0+` build on `vue-cli`. If you want to use the old version , you can switch branch to [tag/3.11.0](https://github.com/PanJiaChen/vue-admin-template/tree/tag/3.11.0), it does not rely on `vue-cli`**
-
-## Build Setup
+## Setup de la web para desarrollo
 
 
 ```bash
-# clone the project
-git clone https://github.com/PanJiaChen/vue-admin-template.git
+# clona el proyecto
+git clone https://github.com/Avrgebro/special-fiesta.git datum-garita
 
-# enter the project directory
-cd vue-admin-template
+# entra al directorio del proyecto
+cd datum-garita
 
-# install dependency
+# instala las dependecias
 npm install
 
-# develop
+# levanta el sistema web
 npm run dev
 ```
 
-This will automatically open http://localhost:9528
+Esto mostrará la web automáticamente en http://localhost:8080
 
-## Build
+## Setup para producción
 
 ```bash
-# build for test environment
+# Generar archivos para ambiente de test
 npm run build:stage
 
-# build for production environment
+# Generar archivos para ambiente de producción
 npm run build:prod
 ```
 
-## Advanced
+## Adicionales
 
 ```bash
-# preview the release environment effect
-npm run preview
-
-# preview the release environment effect + static resource analysis
-npm run preview -- --report
-
-# code format check
+# Verificar formato del código
 npm run lint
 
-# code format check and auto fix
+# Verificar y corregir el formato del código
 npm run lint -- --fix
 ```
 
-Refer to [Documentation](https://panjiachen.github.io/vue-element-admin-site/guide/essentials/deploy.html) for more information
+## Plantilla utilizada
 
-## Demo
+[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
 
-![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
-
-## Extra
-
-If you want router permission && generate menu by user roles , you can use this branch [permission-control](https://github.com/PanJiaChen/vue-admin-template/tree/permission-control)
-
-For `typescript` version, you can use [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template) (Credits: [@Armour](https://github.com/Armour))
-
-## Related Project
-
-[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-
-[electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
-
-[vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template)
-
-## Browsers support
-
-Modern browsers and Internet Explorer 10+.
+## Navegadores soportados
 
 | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
 | --------- | --------- | --------- | --------- |
@@ -84,6 +55,4 @@ Modern browsers and Internet Explorer 10+.
 
 ## License
 
-[MIT](https://github.com/PanJiaChen/vue-admin-template/blob/master/LICENSE) license.
-
-Copyright (c) 2017-present PanJiaChen
+Créditos a los realizadores de la plantilla [vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
