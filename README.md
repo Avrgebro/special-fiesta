@@ -43,9 +43,6 @@ npm run lint
 npm run lint -- --fix
 ```
 
-## Plantilla utilizada
-
-[vue-admin-template](https://github.com/PanJiaChen/vue-admin-template)
 
 ## Navegadores soportados
 
